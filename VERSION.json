@@ -1,7 +1,11 @@
 {
-  "version": "1.0.0",
-  "date": "2026-09-03",
-  "description": "Initial infrastructure extraction from Chutes_Legal_Privileged",
-  "skills_synced": false,
-  "notes": "Skills pending restoration after sandbox recreation"
+  "version": "1.1.0",
+  "date": "2026-09-04",
+  "description": "Skills synced, clause library initialized, shared scripts added",
+  "skills_synced": true,
+  "clause_library": {
+    "limitation_of_liability": 7,
+    "indemnification": 8
+  },
+  "notes": "All 15 skills pushed. Clause library buildout ongoing from EDGAR EX-10."
 }
