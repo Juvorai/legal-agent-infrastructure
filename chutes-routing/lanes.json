@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-11T22:43:00Z",
+  "updated_by": "Chutes_Legal_Privileged (seed)",
+  "default_lane": "C",
+  "lanes": {
+    "A": {
+      "name": "Ultra-cheap bounded operations",
+      "primary": "GLM-4.7-Flash-NVFP4-TEE",
+      "fallbacks": [
+        "google/gemma-4-31B-turbo-TEE"
+      ],
+      "use": "Routing labels, binary relevance decisions, normalization, simple entity tagging, metadata cleanup, short format conversions.",
+      "max_input_tokens": 20000,
+      "max_output_tokens": 1000,
+      "temperature": 0.0
+    },
+    "B": {
+      "name": "Standard extraction and structured transformation",
+      "primary": "google/gemma-4-31B-turbo-TEE",
+      "fallbacks": [
+        "Qwen/Qwen3.8-27B-TEE"
+      ],
+      "use": "Document classification, clause extraction, triage, structured summaries, table generation, citation metadata extraction.",
+      "temperature": 0.1
+    },
+    "C": {
+      "name": "Standard substantive text work (DEFAULT)",
+      "primary": "Qwen/Qwen3.5-397B-A17B-TEE",
+      "fallbacks": [
+        "Qwen/Qwen3.8-27B-TEE"
+      ],
+      "use": "Ordinary drafting, rewriting, synthesis of verified research, document analysis, memoranda from supplied sources, final prose.",
+      "temperature": 0.2
+    },
+    "D": {
+      "name": "Agentic planning, coding, and high-stakes synthesis",
+      "primary": "zai-org/GLM-5.2-TEE",
+      "fallbacks": [
+        "Qwen/Qwen3.5-397B-A17B-TEE",
+        "deepseek-ai/DeepSeek-V3.2-TEE"
+      ],
+      "use": "Multi-step planning, sustained tool use, difficult debugging, repository-scale coding, >5 dependent actions, >200K-token prompts, consequential final synthesis.",
+      "temperature": 0.2
+    },
+    "E": {
+      "name": "Maximum-quality escalation (gated)",
+      "primary": "moonshotai/Kimi-K3-TEE",
+      "fallbacks": [
+        "zai-org/GLM-5.2-TEE"
+      ],
+      "use": "Only when an escalation gate is met: express user request, material uncertainty after Lane D + verification, >500K-token synthesis, Lane D acceptance failure, or final adversarial review.",
+      "temperature": 0.2
+    },
+    "F": {
+      "name": "Bulk million-token preprocessing (provisional output)",
+      "primary": "deepseek-ai/DeepSeek-V4-Flash-0731-TEE",
+      "fallbacks": [
+        "zai-org/GLM-5.2-TEE"
+      ],
+      "use": "Preliminary extraction, corpus mapping, chronology construction, candidate-issue collection over very large inputs. Outputs are provisional and must be verified against primary text.",
+      "temperature": 0.2
+    },
+    "G": {
+      "name": "Model-family-diverse critic",
+      "primary": null,
+      "fallbacks": [
+        "deepseek-ai/DeepSeek-V3.2-TEE"
+      ],
+      "use": "Independent critique of a draft produced by a different model family. Never the same checkpoint as the author.",
+      "temperature": 0.1
+    },
+    "H": {
+      "name": "Vision and multimodal understanding",
+      "primary": "Qwen/Qwen3.8-27B-TEE",
+      "fallbacks": [
+        "moonshotai/Kimi-K2.6-TEE",
+        "moonshotai/Kimi-K3-TEE"
+      ],
+      "use": "Screenshots, scanned-page interpretation after OCR, diagrams, visual UI work. Prefer specialized OCR/transcription endpoints first when the task is primarily reading text or speech.",
+      "temperature": 0.2
+    }
+  },
+  "critic_pairing": {
+    "Qwen/Qwen3.5-397B-A17B-TEE": "zai-org/GLM-5.2-TEE",
+    "Qwen/Qwen3.8-27B-TEE": "zai-org/GLM-5.2-TEE",
+    "zai-org/GLM-5.2-TEE": "Qwen/Qwen3.5-397B-A17B-TEE",
+    "moonshotai/Kimi-K3-TEE": "zai-org/GLM-5.2-TEE",
+    "moonshotai/Kimi-K2.6-TEE": "Qwen/Qwen3.5-397B-A17B-TEE",
+    "deepseek-ai/DeepSeek-V4-Flash-0731-TEE": "zai-org/GLM-5.2-TEE",
+    "deepseek-ai/DeepSeek-V3.2-TEE": "Qwen/Qwen3.5-397B-A17B-TEE",
+    "google/gemma-4-31B-turbo-TEE": "Qwen/Qwen3.5-397B-A17B-TEE"
+  },
+  "embedding_model": "Qwen/Qwen3-Embedding-8B-TEE",
+  "non_primary_models": [
+    "Qwen/Qwen3-235B-A22B-Thinking-2507-TEE",
+    "Qwen/Qwen3-32B-TEE",
+    "Qwen/Qwen3.6-27B-TEE",
+    "moonshotai/Kimi-K2.6-TEE",
+    "unsloth/Mistral-Nemo-Instruct-2407-TEE",
+    "zai-org/GLM-5.1-TEE"
+  ]
+}

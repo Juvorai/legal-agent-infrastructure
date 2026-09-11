@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Chutes lane routing configuration",
+  "description": "Central lane table consumed by the chutes-model-routing skill on all Juvor.ai legal agents. Maintained by Juvor.ai-Legal-Ops. The live Chutes catalog (GET /v1/models) controls availability; this file controls lane purpose and model assignment.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "updated_at",
+    "updated_by",
+    "default_lane",
+    "lanes"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_by": {
+      "type": "string",
+      "description": "Agent or person that made the last change, with reason."
+    },
+    "default_lane": {
+      "type": "string",
+      "enum": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ]
+    },
+    "lanes": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-H]$": {
+          "type": "object",
+          "required": [
+            "name",
+            "primary",
+            "fallbacks",
+            "use"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "primary": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "description": "Chutes model ID, or null for lanes resolved per-call (e.g. Lane G critic)."
+            },
+            "fallbacks": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "use": {
+              "type": "string"
+            },
+            "max_input_tokens": {
+              "type": "integer"
+            },
+            "max_output_tokens": {
+              "type": "integer"
+            },
+            "temperature": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "critic_pairing": {
+      "type": "object",
+      "description": "author model ID -> critic model ID. Critic must be a different model family than the author.",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "embedding_model": {
+      "type": "string"
+    },
+    "non_primary_models": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
