@@ -110,6 +110,18 @@ class PplxClient:
             },
             timeout=30,
         )
+        if resp.status_code == 402:
+            raise RuntimeError(
+                "Browserbase billing block (402 Payment Required): "
+                + resp.json().get("message", "free plan limit reached")
+                + ". Perplexity routing is unavailable. Use the native "
+                "methodology in perplexity_methodology_reference.md instead, "
+                "and ask Ben to upgrade the Browserbase plan."
+            )
+        if resp.status_code in (401, 403):
+            raise RuntimeError(
+                "Browserbase auth failure (%d). Check BROWSERBASE_API_KEY." % resp.status_code
+            )
         resp.raise_for_status()
         session = resp.json()
         self._session_id = session["id"]
@@ -132,12 +144,12 @@ class PplxClient:
                 pass
             self._session_id = None
 
-    async def _connect(self):
+    async def _connect(self, session_timeout: int = 1800):
         """Connect Playwright to the Browserbase session."""
         from playwright.async_api import async_playwright
 
         if not self._session_id:
-            self._create_session()
+            self._create_session(timeout=session_timeout)
 
         self._pw = await async_playwright().start()
         self._browser = await self._pw.chromium.connect_over_cdp(
@@ -215,18 +227,55 @@ class PplxClient:
         await self._page.wait_for_timeout(500)
 
     async def _select_deep_research_mode(self):
-        """Select Deep Research mode from the Search dropdown."""
-        # Click the Search mode button to open dropdown
-        search_btn = self._page.locator(SELECTORS["search_mode_btn"]).first
-        await search_btn.click(timeout=5000)
-        await self._page.wait_for_timeout(1000)
+        """Select Deep Research mode from the Search dropdown, with retries.
 
-        # Click "Deep research" option within the popover dropdown
-        # Must scope to the radix popper wrapper to avoid matching sidebar text
-        popover = self._page.locator("[data-radix-popper-content-wrapper]")
-        dr_option = popover.locator("text=Deep research").first
-        await dr_option.click(timeout=5000)
-        await self._page.wait_for_timeout(500)
+        The popover can render slowly after file attachments are present.
+        Retry the open+select cycle up to 4 times with longer waits before
+        failing (2026-09-06: single 5s attempt failed post-upload).
+        """
+        last_err = None
+        for attempt in range(4):
+            try:
+                # The generic selector also matches stale "Researched" buttons
+                # from prior threads in the sidebar (2026-09-14). Scope to the
+                # compose-area button: text is exactly Search / Deep research /
+                # Pro Search, not "Researched".
+                search_btn = None
+                candidates = self._page.locator(SELECTORS["search_mode_btn"])
+                n = await candidates.count()
+                for i in range(n):
+                    txt = (await candidates.nth(i).inner_text()).strip().lower()
+                    if txt in ("search", "deep research", "pro search", "model council", "max"):
+                        search_btn = candidates.nth(i)
+                        break
+                if search_btn is None:
+                    search_btn = candidates.last
+                await search_btn.click(timeout=10000)
+                await self._page.wait_for_timeout(1500)
+
+                popover = self._page.locator("[data-radix-popper-content-wrapper]")
+                dr_option = popover.locator("text=Deep research").first
+                await dr_option.click(timeout=10000)
+                await self._page.wait_for_timeout(500)
+                # verify the mode button now reads Deep research
+                btn_text = (await search_btn.inner_text()).strip().lower()
+                if "deep" in btn_text:
+                    return
+                # fallback: any visible element confirming deep research selected
+                body = await self._page.locator("body").inner_text()
+                if "deep research" in body.lower():
+                    return
+                last_err = RuntimeError(f"mode button reads '{btn_text}' after click")
+            except Exception as e:
+                last_err = e
+            await self._page.wait_for_timeout(2000)
+            # dismiss any stuck popover before retrying
+            try:
+                await self._page.keyboard.press("Escape")
+                await self._page.wait_for_timeout(500)
+            except Exception:
+                pass
+        raise RuntimeError(f"DEEP RESEARCH MODE SELECTION FAILED after 4 attempts: {last_err}")
 
     async def _submit(self):
         """Click the Submit button."""
@@ -243,17 +292,19 @@ class PplxClient:
             await self._page.wait_for_timeout(poll_interval * 1000)
 
             # Check for completion marker in the main content area
-            # "Finished" appears when all research steps are done
+            # UI shows "Researched" (2026-09) or legacy "Finished" when done
             completed = await self._page.evaluate("""() => {
+                const markers = ['Finished', 'Researched'];
                 const containers = document.querySelectorAll('[class*="scrollable-container"]');
                 for (const c of containers) {
                     const text = c.innerText || '';
-                    if (text.includes('Finished')) return true;
+                    if (markers.some(m => text.includes(m))) return true;
                 }
                 // Also check the main content area
                 const mainDivs = document.querySelectorAll('[class*="@container/main"]');
                 for (const div of mainDivs) {
-                    if ((div.innerText || '').includes('Finished')) return true;
+                    const text = div.innerText || '';
+                    if (markers.some(m => text.includes(m))) return true;
                 }
                 return false;
             }""")
@@ -314,6 +365,31 @@ class PplxClient:
         except Exception:
             pass
 
+        # Deep research reports render inside an artifact panel; the inline
+        # answer is only a short summary. Open the report artifact and
+        # extract its full text (2026-09-14).
+        report_text = ""
+        try:
+            report_link = self._page.locator("text=Deep research report").first
+            if await report_link.count() > 0:
+                await report_link.click(timeout=8000)
+                await self._page.wait_for_timeout(4000)
+                report_text = await self._page.evaluate("""() => {
+                    // artifact panel content
+                    const panels = document.querySelectorAll(
+                        "[class*='artifact'], [data-testid*='artifact'], [class*='Artifact']");
+                    let best = '';
+                    for (const p of panels) {
+                        const t = p.innerText || '';
+                        if (t.length > best.length) best = t;
+                    }
+                    return best;
+                }""")
+                if len(report_text) > len(answer_text):
+                    answer_text = report_text
+        except Exception:
+            pass
+
         return {
             "answer": answer_text,
             "sources": sources,
@@ -323,10 +399,86 @@ class PplxClient:
         }
 
     async def _upload_file(self, file_path: str):
-        """Upload a file to the compose area."""
+        """Upload a file to the compose area and VERIFY it attached.
+
+        Raises RuntimeError if the filename does not appear in the compose
+        area within 30 seconds. Silent upload failure previously caused a
+        Deep Research run to ground on stale project files instead of the
+        attached corpus (2026-09-06 incident).
+        """
+        import os as _os
+        import re as _re
+        fname = _os.path.basename(file_path)
         file_input = self._page.locator(SELECTORS["file_input"])
         await file_input.set_input_files(file_path)
-        await self._page.wait_for_timeout(2000)
+        # Perplexity truncates long filenames in the compose chip, e.g.
+        # "US-Public Cloud Servic...docx". Accept the full name OR a
+        # truncated form: first N chars + "..." + extension (2026-09-14).
+        stem, ext = _os.path.splitext(fname)
+        trunc_patterns = [fname]
+        for n in (20, 16, 12, 10):
+            if len(stem) > n:
+                trunc_patterns.append(
+                    _re.escape(stem[:n]) + r"[^\n]{0,12}\.{2,3}\s*" + _re.escape(ext.lstrip("."))
+                )
+        deadline = time.time() + 30
+        attached = False
+        while time.time() < deadline:
+            body = await self._page.locator("body").inner_text()
+            if fname in body:
+                attached = True
+                break
+            for pat in trunc_patterns[1:]:
+                if _re.search(pat, body):
+                    attached = True
+                    break
+            if attached:
+                break
+            await self._page.wait_for_timeout(1000)
+        if not attached:
+            raise RuntimeError(
+                f"UPLOAD VERIFICATION FAILED: '{fname}' never appeared in the "
+                f"compose area. Do not submit; the run would ground on project "
+                f"files instead of the attachment."
+            )
+
+    # ─────────────────────── Corpus integrity helpers ───────────────────────
+
+    @staticmethod
+    def corpus_fence(attachment_names: list) -> str:
+        """Prompt text forcing Perplexity to use only the attached files."""
+        names = ", ".join(attachment_names)
+        return (
+            "\n\nCORPUS CONSTRAINT (mandatory): Use ONLY the files attached to "
+            f"this message ({names}). Do NOT use project files, connected "
+            "sources, previously uploaded documents, or any other corpus. If "
+            "you cannot see one or more of the attached files, state that "
+            "explicitly at the top of your answer instead of substituting "
+            "other documents. Every citation in your answer must name one of "
+            "the attached files."
+        )
+
+    @staticmethod
+    def audit_citations(answer: str, sources: list, attachment_names: list) -> dict:
+        """Compare cited filenames against attached filenames.
+
+        Returns {"ok": bool, "foreign_citations": [...], "matched": [...]}.
+        A run citing files outside the attached corpus is CORPUS_MISMATCH
+        and its answer must be discarded.
+        """
+        import os as _os, re as _re
+        attached = {_os.path.basename(n) for n in attachment_names}
+        cited = set()
+        for s in sources or []:
+            t = s.get("title") if isinstance(s, dict) else str(s)
+            if t:
+                cited.add(_os.path.basename(str(t).strip()))
+        for m in _re.finditer(r"[\w/\-\.]+\.(?:docx|txt|pdf|xlsx)", answer or ""):
+            cited.add(_os.path.basename(m.group(0)))
+        foreign = sorted(c for c in cited if c and c not in attached)
+        matched = sorted(c for c in cited if c in attached)
+        return {"ok": not foreign, "foreign_citations": foreign, "matched": matched}
+
 
     # ─── Public API ───────────────────────────────────────────────────────
 
@@ -362,7 +514,7 @@ class PplxClient:
         timeout_seconds: int = 600,
     ) -> dict:
         try:
-            await self._connect()
+            await self._connect(session_timeout=timeout_seconds + 300)
             await self._navigate_to_project()
             await self._type_question(question, connectors=connectors)
 
