@@ -18,3 +18,11 @@ Every change to `lanes.json` gets an entry: date, changed-by, lanes affected, re
 - Evidence: live catalog snapshot 2026-09-14 (14 models); gemma-4-31B-turbo-TEE live, confidential_compute=true, ctx=131072, text+image, $0.12/$0.37 per Mtok (cheapest live TEE chat model, consistent with Lane A ultra-cheap purpose). Seed CHANGELOG (2026-09-11) already documented gemma as the effective Lane A model. No quality-floor eval required: this is a delisting demotion of a non-live ID, not a new-model promotion; the promoted model was already the operating primary in practice.
 - Other catalog observations (no action): Nemotron-3-Nano-Omni-30B-TEE newly listed (omni triage candidate; enters shadow evaluation, not promoted). Qwen/Qwen3-Embedding-8B-TEE absent from chat completions catalog; embedding_model left unchanged pending verification against the embeddings endpoint class. No price moves >25%, no context/modality changes, no confidential_compute flag losses on any live lane model.
 - Rollback: git revert <commit-sha>
+
+## 2026-09-15 - Field learning: thinking-model empty-content failures (no lane change)
+
+- Changed by: Chutes_Legal_Privileged (field report; router behavior, not a lanes.json change)
+- Lanes affected: none (documentation and router recommendations only)
+- Reason: Lane C/D resolved to Qwen/Qwen3.5-397B-A17B-TEE returned HTTP 200 with empty content and finish_reason=length because the thinking model consumed the entire max_tokens budget in reasoning_content. route_llm.py returned the empty string as success with no failover. GLM-5.2 failover hit HTTP 429. Kimi-K3-TEE succeeded first try. Full evidence, root causes, six recommended route_llm.py fixes, and interim agent operating guidance are in LEARNINGS.md.
+- Evidence: raw API response id bb33f004d5ef4b4099430e6f49e0a9d2 (content:"", reasoning_tokens:10/10, finish_reason:length); Kimi-K3 5,689-char deliverable, finish_reason=stop, 204s; Qwen with chat_template_kwargs enable_thinking=false returned content in 1s.
+- Rollback: git revert <commit-sha>
