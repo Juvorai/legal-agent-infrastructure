@@ -23,7 +23,7 @@ Coordinator procedure (full runbook in `COORDINATOR.md`):
 ## Consuming agents
 
 - Chutes_GC_Agent (formerly Chutes_Legal_Privileged) (https://www.gumloop.com/agents/gWFwHxE4rrdUuXinu8BbjS)
-- Molecule_Legal_Privileged (https://www.gumloop.com/agents/qFb8CuAd8vbKUbBWXZvyBh)
+- Molecule_GC_Agent (https://www.gumloop.com/agents/qFb8CuAd8vbKUbBWXZvyBh)
 - Juvor.ai-Legal-Ops (https://www.gumloop.com/agents/w2cGii2yfj3UphB8EZ5nWn)
 
 ## Files
