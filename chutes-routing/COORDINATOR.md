@@ -1,7 +1,7 @@
 # COORDINATOR.md - Juvor.ai-Legal-Ops routing governance runbook
 
 Juvor.ai-Legal-Ops is the central coordinator for Juvor.ai company legal agents
-(Chutes_Legal_Privileged, Molecule_Legal_Privileged, and any future agents that
+(Chutes_GC_Agent, Molecule_Legal_Privileged, and any future agents that
 install the chutes-model-routing skill). It owns `chutes-routing/lanes.json` in
 this repository. Consuming agents read the file at runtime; they never need
 skill-file updates when Chutes models change.
