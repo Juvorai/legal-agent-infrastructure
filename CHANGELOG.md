@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.1] - 2026-09-22
+
+### Changed
+- Firm redline rule: do not add a cover note, transmittal, or explanation page to the contract file. The redlined agreement may change only by native Word tracked changes (`w:ins` / `w:del`) and native Word comments, as if edited with Track Changes in Microsoft Word. Any explanation of edits goes in a separate memo.
+- templates/SHARED_INFRASTRUCTURE.md: redlining rule 5 replaced (was "include a cover note as the first page").
+- skills/legal-deep-research/scripts/build_redline.py: cover-note insertion removed; `--cover-note` is rejected.
+- skills/legal-deep-research/scripts/verify_redline.py: fails if `COVER NOTE` front matter is present.
+- skills/legal-deep-research/SKILL.md and skills/office-doc-engine/SKILL.md: same firm rule.
+
 ## [1.2.0] - 2026-09-15
 
 ### Changed

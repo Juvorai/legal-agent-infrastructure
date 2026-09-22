@@ -5,16 +5,20 @@ Builds a .docx with native Word tracked changes (w:ins/w:del) and comments
 from a structured redline analysis (SECTION/ORIGINAL/PROPOSED/REASON entries).
 
 Usage:
-    python3 build_redline.py --source /path/to/original.pdf --entries /path/to/entries.json --output /path/to/output.docx [--author "Name"] [--cover-note /path/to/cover.txt]
+    python3 build_redline.py --source /path/to/original.pdf --entries /path/to/entries.json --output /path/to/output.docx [--author "Name"]
 
 The builder:
 1. Extracts full text from the source document (PDF or DOCX)
 2. Matches each entry's ORIGINAL text to its position in the document
 3. Builds a Word document with:
-   - Cover note (first page)
    - Full agreement text with tracked changes at matched positions
    - Native Word comments with rationale
+   - No cover note, transmittal, or other new front matter
 4. Verifies the output before saving
+
+Firm rule: the contract file is changed only by native Word tracked changes
+and native Word comments, as if the edits were made with Track Changes in
+Microsoft Word. If an explanation of edits is needed, write a separate memo.
 
 This produces a .docx that opens in Microsoft Word with tracked changes
 displayed exactly as if a human lawyer made them in Word.
@@ -102,9 +106,12 @@ def find_matches(full_text: str, entries: list) -> list:
 
 
 def build_docx(full_text: str, entries: list, matches: list, 
-               output_path: str, author: str = "Benjamin Snipes",
-               cover_note: str = None):
-    """Build the .docx with tracked changes and comments."""
+               output_path: str, author: str = "Benjamin Snipes"):
+    """Build the .docx with tracked changes and comments.
+
+    Do not insert a cover note or any other new front matter. The output
+    is the agreement text with native tracked changes and comments only.
+    """
     from docx import Document
     from docx.shared import Pt, Inches
     from docx.enum.text import WD_ALIGN_PARAGRAPH
@@ -126,26 +133,6 @@ def build_docx(full_text: str, entries: list, matches: list,
         section.bottom_margin = Inches(1)
         section.left_margin = Inches(1)
         section.right_margin = Inches(1)
-    
-    # Cover note
-    if cover_note:
-        title_para = doc.add_paragraph()
-        title_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        run = title_para.add_run("COVER NOTE")
-        run.bold = True
-        run.font.size = Pt(13.5)
-        run.font.name = 'Times New Roman'
-        
-        doc.add_paragraph()
-        
-        for line in cover_note.split('\n'):
-            p = doc.add_paragraph()
-            p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-            run = p.add_run(line)
-            run.font.size = Pt(10.5)
-            run.font.name = 'Times New Roman'
-        
-        doc.add_page_break()
     
     # Helper functions for OOXML elements
     def make_run(text):
@@ -354,9 +341,19 @@ def main():
     parser.add_argument("--entries", required=True, help="Path to redline entries JSON")
     parser.add_argument("--output", required=True, help="Output .docx path")
     parser.add_argument("--author", default="Benjamin Snipes", help="Tracked changes author")
-    parser.add_argument("--cover-note", help="Path to cover note text file")
+    parser.add_argument(
+        "--cover-note",
+        help=argparse.SUPPRESS,
+    )
     
     args = parser.parse_args()
+    if getattr(args, "cover_note", None):
+        print(
+            "ERROR: --cover-note is rejected. Do not add a cover note to the "
+            "contract file. Write any explanation as a separate memo.",
+            file=sys.stderr,
+        )
+        sys.exit(2)
     
     # Load entries
     with open(args.entries) as f:
@@ -381,15 +378,10 @@ def main():
         unmatched = set(range(len(entries))) - set(idx for _, _, idx in matches)
         print(f"  Unmatched entries: {sorted(unmatched)}")
     
-    # Load cover note
-    cover_note = None
-    if args.cover_note and os.path.exists(args.cover_note):
-        cover_note = Path(args.cover_note).read_text()
-    
     # Build document
     print("\nBuilding .docx with tracked changes...")
     comment_count = build_docx(full_text, entries, matches, args.output, 
-                               author=args.author, cover_note=cover_note)
+                               author=args.author)
     
     print(f"  Comments created: {comment_count}")
     print(f"  File size: {os.path.getsize(args.output)} bytes")

@@ -183,6 +183,8 @@ Key elements:
 - `w:comment` in `word/comments.xml` for annotations
 - `w:commentReference` and `w:commentRangeStart`/`w:commentRangeEnd` in document body
 
+Firm rule: the contract file must not be changed in any way other than those tracked changes and native Word comments. Produce the redline as if the edits were made with Track Changes inside Microsoft Word. Do not add a cover note, transmittal letter, explanation page, or other new front matter to the redlined agreement. If an explanation of edits is needed, write it as a separate memo file and deliver that memo alongside the redline.
+
 ## Scripts
 
 - `scripts/docx_footnotes.py` - Real Word footnote implementation

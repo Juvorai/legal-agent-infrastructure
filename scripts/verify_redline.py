@@ -121,8 +121,16 @@ def verify_redline(docx_path, originals, proposed):
         "comments_count": len(comments),
         "del_count": len(del_texts),
         "ins_count": len(ins_texts),
+        "cover_note_present": False,
         "pass": True,
     }
+
+    # Firm rule: no cover note / transmittal front matter in the contract file
+    with zipfile.ZipFile(docx_path, 'r') as z:
+        doc_xml = z.read('word/document.xml')
+    if b'COVER NOTE' in doc_xml.upper():
+        results["cover_note_present"] = True
+        results["pass"] = False
     
     # Check originals appear as deletions
     for orig in originals:

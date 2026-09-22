@@ -1,11 +1,11 @@
 {
-  "version": "1.2.0",
-  "date": "2026-09-15",
-  "description": "perplexity-deep-research skill rewritten: three-path routing (Agent API primary, Sonar file-attachment mode, Browserbase fallback)",
+  "version": "1.2.1",
+  "date": "2026-09-22",
+  "description": "Firm redline rule: no cover note in the contract file; tracked changes and comments only. Explanation memos are separate files.",
   "skills_synced": true,
   "clause_library": {
     "limitation_of_liability": 7,
     "indemnification": 8
   },
-  "notes": "perplexity-deep-research updated from Chutes_Legal_Privileged after live parallel testing. Consuming agents must bind PERPLEXITY_API_KEY. Sonar file mode sunsets 2026-09-27."
+  "notes": "build_redline.py rejects --cover-note. verify_redline.py fails on COVER NOTE front matter. Consuming agents must update AGENT.md redlining rule 5 to match templates/SHARED_INFRASTRUCTURE.md."
 }

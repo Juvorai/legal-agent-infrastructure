@@ -16,6 +16,7 @@ Checks:
    every PROPOSED text appears as w:ins text
 7. Author attribution is correct on all revisions
 8. Comment references in document body match comment IDs in comments.xml
+9. No cover-note front matter (no COVER NOTE heading or transmittal page)
 
 Exit codes:
     0 = all checks pass
@@ -86,6 +87,19 @@ def verify(docx_path: str, entries_path: str = None) -> bool:
             print(f"  ✓ Revision dates present: {len(dates)}")
         else:
             warnings.append("No w:date attributes found on revisions")
+        
+        # Check: no cover-note front matter in the contract file
+        doc_text_plain = re.sub(r'<[^>]+>', ' ', doc_xml)
+        doc_text_plain = re.sub(r'\s+', ' ', doc_text_plain)
+        if re.search(r'\bCOVER NOTE\b', doc_text_plain, re.IGNORECASE):
+            errors.append(
+                "Cover note front matter found in the contract file. "
+                "Redlines must not add a cover note, transmittal, or "
+                "explanation page to the agreement. Write any explanation "
+                "as a separate memo."
+            )
+        else:
+            print("  ✓ No cover-note front matter")
         
         # Check 6: comments.xml
         if 'word/comments.xml' in names:

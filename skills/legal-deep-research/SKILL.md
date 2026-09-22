@@ -86,6 +86,22 @@ Before delivery, verify:
 
 Every citation is a hyperlink. Format per Bluebook rules (see ben-writing-style-2 skill).
 
+## Contract redlines
+
+When this skill's redline builder is used, the contract `.docx` must contain only the original agreement plus native Word tracked changes (`w:ins` / `w:del`) and native Word comments. Do not add a cover note, transmittal, or explanation page to the contract file. If an explanation of edits is needed, write a separate memo and export it as its own file. Do not pass `--cover-note` to `scripts/build_redline.py`; the flag is rejected.
+
+```bash
+python3 scripts/build_redline.py \
+  --source /path/to/original.pdf \
+  --entries /path/to/entries.json \
+  --output /path/to/output.docx \
+  --author "Benjamin Snipes"
+
+python3 scripts/verify_redline.py /path/to/output.docx --entries /path/to/entries.json
+```
+
 ## Scripts
 
 - `scripts/research_tracker.py` - Track research progress and citations gathered
+- `scripts/build_redline.py` - Native Word tracked-changes redline builder (no cover note in the contract file)
+- `scripts/verify_redline.py` - Verifies tracked changes, comments, and absence of cover-note front matter
