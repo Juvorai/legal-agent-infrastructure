@@ -6,6 +6,40 @@ Tiers: **doctrine** (changes or reaffirms a legal rule practitioners rely on —
 
 ---
 
+## Cycle 2026-09-23 — window 2026-09-22 to 2026-09-23
+
+Verification: Lane C draft attempted (Qwen/Qwen3.5-397B-A17B-TEE returned empty content after hidden-reasoning budget exhaustion, recurring failure mode) → fallback draft (google/gemma-4-31B-turbo-TEE) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; verdict fail on first draft — synthesized verbatim text and invented citation URLs in scan entries) → revision per critic findings → parent deterministic quote/URL check: pass (2/2 verbatim quotes exact match after whitespace normalization; 5/5 citation URLs HTTP 200).
+
+### Federal Register publication of tokenized NMS stock Innovation Exemption order (91 FR 60168) [development]
+
+Federal Register publication of SEC Release No. 34-106402 (File No. 4-927): temporary conditional exemptions from the ``exchange'' definition (Section 3(a)(1)) for Tokenized Securities Venues and from the ``dealer'' definition (Section 3(a)(5)) for certain AMM liquidity providers, with request for comment. Additive to the doctrine item from cycle 2026-09-18 (SEC press release 2026-90); this is the official FR publication of the same order.
+
+**Verbatim:** "The Securities and Exchange Commission (``Commission'' or ``SEC'') hereby issues these temporary, conditional exemptions to facilitate the permissioned trading of tokenized NMS stock using innovative automated market makers (``AMMs'') and liquidity pools (together referred to as ``AMM Liquidity Pools'')."
+
+**Citation:** https://www.federalregister.gov/documents/2026/09/22/2026-19388/order-granting-temporary-conditional-exemptive-relief-pursuant-to-section-36a1-of-the-securities
+
+**Verification verdict:** verified (Lane G critic: pass after revision; parent quote/URL check: pass — exact match after whitespace normalization of line-wrapped FR raw text)
+
+### SEC censures OTC Link LLC for Regulation SCI compliance failures (press release 2026-91) [development]
+
+Settled enforcement action: censure and $575,000 civil penalty against OTC Link LLC for longstanding Regulation SCI violations (policies and procedures for system security, access control, vulnerability management) at OTC Link ATS, August 2016–March 2025. Routine enforcement; no new doctrine.
+
+**Verbatim:** "The Securities and Exchange Commission today censured New York-based broker dealer OTC Link LLC and ordered it to pay a $575,000 civil penalty for longstanding violations of Regulation Systems Compliance and Integrity (SCI)."
+
+**Citation:** https://www.sec.gov/newsroom/press-releases/2026-91-sec-censures-otc-link-llc-repeated-compliance-failures-related-regulation-sci
+
+**Verification verdict:** verified (Lane G critic: pass after revision; parent quote/URL check: pass — exact-string match on SEC press release page)
+
+### Scan: routine SRO notices; no Delaware opinions; no capital-formation bills [scan]
+
+Negative/routine result across remaining sources. Three immediately effective SRO filings published 2026-09-22, all routine: Cboe C2 fee schedule amendment for Step Up Mechanism Auctions (91 FR 60184, SR-C2-2026-026, https://www.federalregister.gov/documents/2026/09/22/2026-19299/self-regulatory-organizations-cboe-c2-exchange-inc-notice-of-filing-and-immediate-effectiveness-of-a); Nasdaq PHLX Options 10, Section 27, Influencing or Rewarding Employees of Others (91 FR 60186, SR-Phlx-2026-56, https://www.federalregister.gov/documents/2026/09/22/2026-19298/self-regulatory-organizations-nasdaq-phlx-llc-notice-of-filing-and-immediate-effectiveness-of); NYSE Rule 7.10 Clearly Erroneous Executions amendment (91 FR 60165, SR-NYSE-2026-46, https://www.federalregister.gov/documents/2026/09/22/2026-19296/self-regulatory-organizations-new-york-stock-exchange-llc-notice-of-filing-and-immediate). CourtListener: 0 opinions filed in Delaware Court of Chancery (delch) and 0 in Delaware Supreme Court (del) in the window. Congress.gov: keyword screen (capital/securities/investment/venture/crowdfund/accredited/offering/emerging growth) over 250 updated bills found no new capital-formation bill introductions or actions (8 keyword hits, all false positives — cybersecurity, infrastructure investment, park leases, homeland security).
+
+**Citation:** https://www.federalregister.gov/documents/2026/09/22/2026-19299/self-regulatory-organizations-cboe-c2-exchange-inc-notice-of-filing-and-immediate-effectiveness-of-a (representative; see entry text for all three)
+
+**Verification verdict:** verified (Lane G critic: pass after revision — scan entry carries no synthesized verbatim quote; parent URL check: 3/3 FR URLs HTTP 200)
+
+---
+
 ## Cycle 2026-09-22 — window 2026-09-21 to 2026-09-22
 
 Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; verdict fail on first draft — synthesized text mislabeled as verbatim, invented citation URLs and keyword list in scan entry, omitted source detail) → revision per critic findings → parent deterministic quote/URL check: pass (1/1 verbatim quote exact match after whitespace normalization; citation URL live, HTTP 200).
