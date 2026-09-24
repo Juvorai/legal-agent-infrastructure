@@ -2,6 +2,12 @@
 
 Rollback index. Every merge into references/ writes a line here.
 
+## 2026-09-24 — Daily monitoring cycle (window 2026-09-23 → 2026-09-24)
+
+- Merged 4 verified entries: SEC DERA updated capital-markets statistics showing IPO/follow-on growth (press release 2026-93) [development]; Coinbase Derivatives proposed rule change on customer margin for security futures (91 FR 60670, Release 34-106443, SR-COIN-2026-001) [development]; Tillman v. Tillman, Del. Ch. (C.A. No. 2025-0475-PAF) — family-LLC derivative suit dismissed on existing doctrine [development]; 1 scan-tier entry (SEC 2026-92 fraud enforcement non-doctrinal; Del. Supreme Carter v. State criminal; 17 routine FR notices; Congress.gov 250 updated bills / 0 capital-formation hits).
+- Verification chain: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE empty-content failure, recurring reasoning-budget issue) → fallback draft (google/gemma-4-31B-turbo-TEE) → Lane G critic (Qwen3.5-397B empty again; fallback deepseek-ai/DeepSeek-V3.2-TEE; verdict fail on first draft — unsourced time reference, N/A verbatim in scan entry) → revision → parent deterministic quote/URL check: pass (4/4 quotes exact match after whitespace normalization; 4/4 URLs HTTP 200/202).
+- No doctrine-level items. No source changes.
+
 ## 2026-09-23 — Daily monitoring cycle (window 2026-09-22 → 2026-09-23)
 
 - Merged 3 verified entries: FR publication of tokenized NMS stock Innovation Exemption order (91 FR 60168, Release 34-106402; additive to cycle 2026-09-18 doctrine item) [development]; SEC censure of OTC Link LLC, Reg SCI, $575,000 penalty (press release 2026-91) [development]; 1 scan-tier entry (3 routine SRO notices — Cboe C2 91 FR 60184, Nasdaq PHLX 91 FR 60186, NYSE 91 FR 60165; CourtListener delch/del 0 opinions; Congress.gov 250 updated bills / 0 capital-formation hits).
