@@ -2,6 +2,12 @@
 
 Rollback index. Every merge into references/ writes a line here.
 
+## 2026-09-26 — Daily monitoring cycle (window 2026-09-25 → 2026-09-26)
+
+- No new verified developments: 5 scan-tier entries merged (SEC press negative — latest release 2026-93 dated Sept. 23; 15 routine FR SEC notices, all SRO/OMB extensions; Skotta v. Mears, Del. Ch. (C.A. No. 2024-1085-CCB) reviewed and found non-corporate (real-property lane dispute); Del. Supreme 0 opinions; Congress.gov 250 updated bills / 0 capital-formation hits — H.R. 1672 title match is Health policy area, no window action).
+- Verification chain: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE, succeeded) → Lane G critic (zai-org/GLM-5.2-TEE empty-content failure ×4, Qwen3.5-397B pairing also empty; cross-family critic completed via Lane B google/gemma-4-31B-turbo-TEE; verdict fail on first draft — meta-language verbatim fields, missing URLs) → revision → parent deterministic quote/URL check: pass (Skotta verbatim exact match in opinion text; CourtListener and Federal Register URLs live; SEC press page and Congress.gov bill page return 403 to automated requests — content verified via web fetch / api.congress.gov respectively).
+- No doctrine-level items. No source changes.
+
 ## 2026-09-25 — Daily monitoring cycle (window 2026-09-24 → 2026-09-25)
 
 - Merged 4 verified entries + 1 scan-tier entry: Gendreau v. Movora LLC, Del. (No. 447, 2025) — M&A indemnification fee-shifting requires clear and unequivocal language [doctrine, flagged]; In re Care One, LLC Advancement Litigation, Del. Ch. (C.A. No. 2025-1286-NAC) — advancement denied under unclean hands [doctrine, flagged]; Curonix LLC v. Perryman, Del. Ch. (C.A. No. 2019-1003-BWD) summary judgment [development]; Castle Tire Disposal v. Liberty Tire Services, Del. Ch. (C.A. No. 2025-1497-LWW) metadata-only, no text available [development]; scan entry (SEC press negative; 23 routine FR notices; Congress.gov 250 updated bills / 0 capital-formation hits).
