@@ -6,6 +6,62 @@ Tiers: **doctrine** (changes or reaffirms a legal rule practitioners rely on —
 
 ---
 
+## Cycle 2026-09-26 — window 2026-09-25 to 2026-09-26
+
+Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE, succeeded this cycle) → Lane G cross-family critic (primary zai-org/GLM-5.2-TEE returned empty content after hidden-reasoning budget exhaustion on 4 attempts; fallback pairing Qwen3.5-397B also empty; cross-family critic completed via Lane B google/gemma-4-31B-turbo-TEE; verdict fail on first draft — meta-language verbatim fields and missing URLs in scan entries 1, 2, 4, 5) → revision per critic findings (verbatim fields replaced with observed-evidence descriptions labeled as scan results, URLs added to all citations) → parent deterministic quote/URL check: pass (see verdicts below).
+
+### 1. SEC press releases — no releases in window [scan]
+
+No SEC press releases were issued during the window; the most recent release on the SEC press page is dated Sept. 23, 2026 ("SEC Publishes Updated Market Statistics, Highlighting Increase in IPOs and Proceeds Raised", Release No. 2026-93), which predates the window.
+
+**Verbatim (scan result — no document to quote):** SEC press releases page listing shows most recent date "Sept. 23, 2026" with Release No. 2026-93; no entries dated 2026-09-25 or 2026-09-26.
+
+**Citation:** https://www.sec.gov/newsroom/press-releases
+
+**Verification verdict:** verified (Lane G critic: pass after revision; parent check: SEC press page HTTP 200, most recent release confirmed as 2026-93 dated Sept. 23, 2026 — negative scan, no single document URL)
+
+### 2. Federal Register SEC agency feed — 15 routine notices, none substantive [scan]
+
+Fifteen SEC documents were published 2026-09-25, all type "Notice": 7 SRO notices of filing and immediate effectiveness of proposed rule changes (NYSE Arca Rule 2.1210, doc 2026-19639; NYSE Arca Options fee schedule, doc 2026-19638; NYSE American Rule 2.1210, doc 2026-19635; NYSE Rule 1210, doc 2026-19634; NYSE National Rule 2.1210, doc 2026-19633; NYSE Texas Art. 6 Rule 13, doc 2026-19632; NYSE Rule 7.18, doc 2026-19630) and 8 Agency Information Collection Activities OMB-review extensions (Rules 15c6-2, 613 of Reg NMS, 608, 15c3-3, 17a-10, 31a-2, 17Ac3-1/Form TA-W, 17f-2(e); docs 2026-19614 through 2026-19621). None corporate/VC substantive.
+
+**Verbatim (scan result — Federal Register API response):** "Documents published from 09/25/2026 to 09/26/2026 and from Securities and Exchange Commission","count":15 — all 15 results type "Notice", publication_date "2026-09-25".
+
+**Citation:** https://www.federalregister.gov/api/v1/documents.json?conditions[agencies][]=securities-and-exchange-commission&conditions[publication_date][gte]=2026-09-25&conditions[publication_date][lte]=2026-09-26
+
+**Verification verdict:** verified (Lane G critic: pass after revision; parent check: API response count=15 confirmed, all Notice type, all dated 2026-09-25)
+
+### 3. Skotta v. Mears, Del. Ch. (C.A. No. 2024-1085-CCB) — reviewed, non-corporate [scan]
+
+The single Delaware Court of Chancery opinion filed in the window is a Magistrate in Chancery final report (C.C. Brittingham) in a dispute between neighboring property owners over maintenance-cost allocation for a private farm lane in Sussex County. Reviewed and determined outside corporate/VC scope: no DGCL issue, no entity governance, no M&A. Recorded for completeness only.
+
+**Verbatim:** "Pending before me is a petition for declaratory judgment and related relief regarding a dispute between neighboring property owners."
+
+**Citation:** https://www.courtlistener.com/opinion/10983937/william-f-skotta-jr-trustee-v-arthur-l-mears-sr/
+
+**Verification verdict:** verified (Lane G critic: pass; parent quote check: exact match against CourtListener opinion text; URL HTTP 200)
+
+### 4. Delaware Supreme Court — no opinions in window [scan]
+
+CourtListener search (court=del, filed_after 2026-09-25) returned zero opinions for the window.
+
+**Verbatim (scan result — CourtListener API response):** count: 0 for court=del, filed_after=2026-09-25.
+
+**Citation:** https://www.courtlistener.com/api/rest/v4/search/?type=o&court=del&filed_after=2026-09-25
+
+**Verification verdict:** verified (Lane G critic: pass after revision; parent check: API response count=0 confirmed — negative scan)
+
+### 5. Congress.gov — no capital-formation bill activity in window [scan]
+
+250 bills were updated in the window; keyword screen (capital/securities/investment/venture/crowdfund/accredited/offering/emerging growth) over titles produced one title match, H.R. 1672 "Maintaining Investments in New Innovation Act", which on inspection is a Health policy-area bill introduced 2025-02-27 whose latest action (2025-02-27 committee referral) predates the window. No new capital-formation introductions or actions.
+
+**Verbatim (scan result — Congress.gov API):** H.R. 1672 latestAction: "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means" (actionDate 2025-02-27); policyArea "Health".
+
+**Citation:** https://www.congress.gov/bill/119th-congress/house-bill/1672
+
+**Verification verdict:** verified (Lane G critic: pass after revision; parent check: api.congress.gov bill detail confirmed Health policy area and 2025-02-27 latest action — no window activity)
+
+---
+
 ## Cycle 2026-09-25 — window 2026-09-24 to 2026-09-25
 
 Verification: Lane C draft attempted (Qwen/Qwen3.5-397B-A17B-TEE returned empty content after hidden-reasoning budget exhaustion, recurring failure mode) → fallback draft (google/gemma-4-31B-turbo-TEE) → Lane G cross-family critic (Qwen/Qwen3.5-397B-A17B-TEE returned empty; fallback deepseek-ai/DeepSeek-V3.2-TEE; verdict fail on first draft — meta-language verbatim fields in scan entries and Curonix/Castle Tire entries) → revision per critic findings (verbatim quotes replaced with primary-source text or scan-result descriptions; Castle Tire re-tiered to development) → parent deterministic quote/URL check: pass (3/3 verbatim quotes exact match after whitespace normalization; CourtListener URLs HTTP 200 ×4, SEC press page HTTP 200; Congress.gov blocks automated HEAD/GET with 403 — API scan verified via api.congress.gov response, homepage URL retained as general citation).
