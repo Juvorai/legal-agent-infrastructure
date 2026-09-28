@@ -1,191 +1,113 @@
-# office-doc-engine
+---
+name: office-doc-engine
+description: "Create and edit Microsoft Office deliverables (.docx, .xlsx, .pptx) and PDFs with full formatting control. Use whenever the user asks for a Word document, memo, brief, contract, spreadsheet, workbook, slide deck, presentation, or PDF output. Word documents support real footnotes (required for legal citations unless the user asks otherwise), styles, headers/footers, tables, and section formatting. Always export the finished file with export_to_user."
+icon: file-text
+color: Green
+---
 
-Create and edit Microsoft Office deliverables (.docx, .xlsx, .pptx) and PDFs with full formatting control. Use whenever the user asks for a Word document, memo, brief, contract, spreadsheet, workbook, slide deck, presentation, or PDF output. Word documents support real footnotes (required for legal citations unless the user asks otherwise), styles, headers/footers, tables, and section formatting. Always export the finished file with export_to_user.
+# Office Document Engine
 
-## Docx Formatting Rules (permanent, all .docx output unless the user says otherwise)
+Produce professional Office files and PDFs from the sandbox. All generation goes through the scripts here; never hand-assemble OOXML.
 
-1. 10.5 point font on all body text and all headings except the title.
-2. 13.5 point font on the title.
-3. Times New Roman on all text.
-4. All text in black color (Automatic).
-5. All footnotes in 8 point font.
-6. All footnotes as real Word footnotes (native footnotes part), as if made directly in MS Word.
-7. Zero space before or after footnotes.
-8. All body text fully justified.
-9. Header text is a short, accurate summary of the document in a few words (not necessarily the literal title), right justified, 8 point italic, starting on the second page only (different first page header).
-10. Page numbers on all pages, centered in the footer, formatted "X of Y" (PAGE of NUMPAGES fields), e.g. page one of ten reads "1 of 10", at 8 point font.
-11. Summary metadata: Author set to the configured author (see COMPANY CONFIGURATION in AGENT.md) and nothing else. No reference to "python" or any tooling anywhere in the metadata.
-12. Contracts: each signature page and each exhibit, schedule, or appendix begins on its own page (use page_break()).
-13. Writing: no hyphens or em dashes except grammatically correct word hyphenation. One space after each sentence.
-14. Overall professionalism equal to an AmLaw 100 law firm work product.
+## Libraries (pre-installed)
 
-## Implementation with python-docx
+- Word: `python-docx`
+- Excel: `openpyxl`
+- PowerPoint: `python-pptx`
+- PDF: `reportlab` (generation), `weasyprint` (HTML to PDF), `pypdf` / `PyMuPDF` (read/merge/inspect)
 
-### Document Setup
+## Word (.docx)
 
-```python
-from docx import Document
-from docx.shared import Pt, Inches, RGBColor
-from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.enum.section import WD_ORIENT
-from docx.oxml.ns import qn, nsdecls
-from docx.oxml import parse_xml
-import datetime
+Use `scripts/docx_builder.py`. It wraps python-docx and adds the one thing python-docx lacks natively: **real Word footnotes** (the kind that render at the bottom of the page and renumber automatically), implemented by injecting the footnotes part into the document package.
 
-doc = Document()
+### Citation policy for legal documents
 
-# Set default font
-style = doc.styles['Normal']
-font = style.font
-font.name = 'Times New Roman'
-font.size = Pt(10.5)
-font.color.rgb = RGBColor(0, 0, 0)
+Citations in legal memos and briefs go in **real footnotes**, not inline bracket cites, unless the user asks otherwise. Pass citations as footnote text; the builder places the reference mark and the footnote body.
 
-# Set paragraph formatting
-pf = style.paragraph_format
-pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-pf.space_before = Pt(0)
-pf.space_after = Pt(6)
-```
-
-### Title
+### Quick start
 
 ```python
-title_para = doc.add_paragraph()
-title_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-title_run = title_para.add_run("Document Title")
-title_run.font.size = Pt(13.5)
-title_run.font.name = 'Times New Roman'
-title_run.font.bold = True
-title_run.font.color.rgb = RGBColor(0, 0, 0)
+import sys
+sys.path.insert(0, "/home/user/skills/office-doc-engine/scripts")
+from docx_builder import MemoBuilder
+
+doc = MemoBuilder(title="Memorandum", author="Chutes_Legal_AI")
+doc.heading("Issue", level=1)
+doc.paragraph("Whether the token constitutes an investment contract.")
+doc.heading("Bottom line", level=1)
+doc.paragraph_with_footnote(
+    "Likely yes under the Howey test.",
+    footnote="SEC v. W.J. Howey Co., 328 U.S. 293 (1946).",
+)
+doc.heading("Analysis", level=1)
+doc.paragraph("...")
+doc.save("/home/user/memo.docx")
 ```
 
-### Headings
+Capabilities: headings (levels 1-4), body paragraphs, bold/italic runs, footnotes, tables, numbered and bulleted lists, page numbers in footer, custom margins, block quotes, horizontal rules. For anything beyond the builder's API, drop to python-docx directly; the builder exposes `.document`.
+
+### Formatting controls
+
+- Styles: modify `doc.document.styles` for fonts (default body: 12pt serif), spacing, heading look.
+- Sections: `doc.document.sections[0]` for margins, page size, orientation, headers/footers.
+- Tables: `doc.table(rows, cols, header=[...])` then fill cells.
+
+## Excel (.xlsx)
+
+Use `openpyxl` directly, following the `spreadsheet-output` skill for viewer-friendly formatting. Standard pattern:
 
 ```python
-def add_heading(doc, text, level=1):
-    para = doc.add_paragraph()
-    run = para.add_run(text)
-    run.font.size = Pt(10.5)
-    run.font.name = 'Times New Roman'
-    run.font.bold = True
-    run.font.color.rgb = RGBColor(0, 0, 0)
-    para.paragraph_format.space_before = Pt(12)
-    para.paragraph_format.space_after = Pt(6)
-    return para
+from openpyxl import Workbook
+from openpyxl.styles import Font, PatternFill
+
+wb = Workbook()
+ws = wb.active
+ws.append(["Column A", "Column B"])
+for cell in ws[1]:
+    cell.font = Font(bold=True)
+ws.freeze_panes = "A2"
+wb.save("/home/user/output.xlsx")
 ```
 
-### Real Footnotes
+Number formats, column widths, conditional formatting, and formulas are all supported via openpyxl. Keep one header row, no merged cells in data regions, ISO dates.
+
+## PowerPoint (.pptx)
+
+Use `python-pptx` directly:
 
 ```python
-def add_footnote(paragraph, footnote_text):
-    """Add a real Word footnote to a paragraph."""
-    from docx.oxml import OxmlElement
-    
-    # Create footnote reference in the paragraph
-    run = paragraph.add_run()
-    fldChar1 = OxmlElement('w:footnoteReference')
-    
-    # Get or create footnotes part
-    # This requires direct OOXML manipulation
-    # See scripts/docx_footnotes.py for the full implementation
-    pass
+from pptx import Presentation
+from pptx.util import Inches, Pt
+
+prs = Presentation()
+slide = prs.slides.add_slide(prs.slide_layouts[1])
+slide.shapes.title.text = "Title"
+slide.placeholders[1].text = "Body"
+prs.save("/home/user/deck.pptx")
 ```
 
-For real footnotes, use `scripts/docx_footnotes.py` which handles the full OOXML footnotes part creation.
+Use layouts from the default template, set fonts explicitly, and keep text short. For board decks, follow the voice rules in `ben-writing-style-2`.
 
-### Headers and Footers
+## PDF
 
-```python
-def setup_header_footer(doc, header_text):
-    """Set up header (page 2+) and footer (all pages) with X of Y numbering."""
-    section = doc.sections[0]
-    section.different_first_page_header_footer = True
-    
-    # Header (second page onward)
-    header = section.header
-    header_para = header.paragraphs[0]
-    header_para.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    header_run = header_para.add_run(header_text)
-    header_run.font.size = Pt(8)
-    header_run.font.italic = True
-    header_run.font.name = 'Times New Roman'
-    
-    # Footer with page X of Y
-    footer = section.footer
-    footer_para = footer.paragraphs[0]
-    footer_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    
-    # Add PAGE field
-    run = footer_para.add_run()
-    fldChar1 = OxmlElement('w:fldChar')
-    fldChar1.set(qn('w:fldCharType'), 'begin')
-    run._r.append(fldChar1)
-    
-    run2 = footer_para.add_run()
-    instrText = OxmlElement('w:instrText')
-    instrText.set(qn('xml:space'), 'preserve')
-    instrText.text = ' PAGE '
-    run2._r.append(instrText)
-    
-    run3 = footer_para.add_run()
-    fldChar2 = OxmlElement('w:fldChar')
-    fldChar2.set(qn('w:fldCharType'), 'end')
-    run3._r.append(fldChar2)
-    
-    # " of "
-    footer_para.add_run(" of ")
-    
-    # Add NUMPAGES field
-    run4 = footer_para.add_run()
-    fldChar3 = OxmlElement('w:fldChar')
-    fldChar3.set(qn('w:fldCharType'), 'begin')
-    run4._r.append(fldChar3)
-    
-    run5 = footer_para.add_run()
-    instrText2 = OxmlElement('w:instrText')
-    instrText2.set(qn('xml:space'), 'preserve')
-    instrText2.text = ' NUMPAGES '
-    run5._r.append(instrText2)
-    
-    run6 = footer_para.add_run()
-    fldChar4 = OxmlElement('w:fldChar')
-    fldChar4.set(qn('w:fldCharType'), 'end')
-    run6._r.append(fldChar4)
-    
-    # Set footer font
-    for run in footer_para.runs:
-        run.font.size = Pt(8)
-        run.font.name = 'Times New Roman'
-```
+- Generate: `reportlab` for programmatic PDFs, or write HTML and convert with `weasyprint` for styled documents.
+- Read/extract: `PyMuPDF` (`fitz`) for text extraction from uploaded PDFs; `pypdf` for merge/split/rotate.
 
-### Metadata
+## Reading uploaded Office files
 
-```python
-def set_metadata(doc, author):
-    """Set document metadata with author only."""
-    core_props = doc.core_properties
-    core_props.author = author
-    core_props.title = ""
-    core_props.subject = ""
-    core_props.keywords = ""
-    core_props.comments = ""
-    core_props.last_modified_by = author
-```
+- .docx: `python-docx` (paragraphs, tables) or `markitdown` for quick text.
+- .xlsx: `openpyxl` or `pandas.read_excel`.
+- .pptx: `python-pptx` or `markitdown`.
+- .pdf: `PyMuPDF`.
 
-### Tracked Changes (Redlining)
+## Redlining / tracked changes
 
-For tracked changes, use OOXML revision markup directly. See the redlining rules in AGENT.md and `scripts/verify_redline.py` for verification.
+For any request to redline, mark up, or show edits in a .docx, use the `docx-redlining` skill (`scripts/redline.py`): real Word tracked changes at word level, never whole-paragraph strikes for small edits, and always ask the user in whose name the redlines should be made before editing.
 
-Key elements:
-- `w:ins` for insertions (with `w:author` and `w:date` attributes)
-- `w:del` containing `w:delText` for deletions
-- `w:comment` in `word/comments.xml` for annotations
-- `w:commentReference` and `w:commentRangeStart`/`w:commentRangeEnd` in document body
+## Delivery
 
-Firm rule: the contract file must not be changed in any way other than those tracked changes and native Word comments. Produce the redline as if the edits were made with Track Changes inside Microsoft Word. Do not add a cover note, transmittal letter, explanation page, or other new front matter to the redlined agreement. If an explanation of edits is needed, write it as a separate memo file and deliver that memo alongside the redline.
+Always `export_to_user` the finished file. Keep the same filename on revisions so versions chain.
 
 ## Scripts
 
-- `scripts/docx_footnotes.py` - Real Word footnote implementation
-- `scripts/verify_redline.py` - Verify tracked changes in redlined documents
+- `scripts/docx_builder.py`: MemoBuilder class with real footnote support and legal memo conveniences.
