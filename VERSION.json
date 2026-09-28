@@ -1,11 +1,11 @@
 {
-  "version": "1.2.1",
-  "date": "2026-09-22",
-  "description": "Firm redline rule: no cover note in the contract file; tracked changes and comments only. Explanation memos are separate files.",
+  "version": "1.3.0",
+  "date": "2026-09-28",
+  "description": "New docx-redlining skill: word-level tracked changes (w:ins/w:del) and mandatory author-name prompt. Redlining sections added to gc-clo-tech-startup-2, office-doc-engine, corporate-vc-finance, securities-capital-markets, ben-writing-style-2.",
   "skills_synced": true,
   "clause_library": {
     "limitation_of_liability": 7,
     "indemnification": 8
   },
-  "notes": "build_redline.py rejects --cover-note. verify_redline.py fails on COVER NOTE front matter. Consuming agents must update AGENT.md redlining rule 5 to match templates/SHARED_INFRASTRUCTURE.md."
+  "notes": "docx-redlining/scripts/redline.py enforces author name (raises on empty) and diffs at word level. Complements build_redline.py/verify_redline.py; consuming agents should route all .docx markup through docx-redlining."
 }

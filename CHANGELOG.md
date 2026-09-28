@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.3.0] - 2026-09-28
+
+### Added
+- skills/docx-redlining: new skill for human-style .docx redlining.
+  - scripts/redline.py: Redliner (targeted word-level edits via replace_text) and
+    redline_documents (two-file blackline with paragraph alignment). Produces real
+    Word tracked changes (w:ins / w:del) wrapping only the words that change.
+  - Author name is mandatory and enforced in code (ValueError on empty); agents
+    must ask the user in whose name redlines should be made before editing.
+
+### Changed
+- skills/gc-clo-tech-startup-2/SKILL.md: redlining rules section added.
+- skills/office-doc-engine/SKILL.md: pointer to docx-redlining for any markup request.
+- skills/corporate-vc-finance/SKILL.md: redlining section added.
+- skills/securities-capital-markets/SKILL.md: redlining section added.
+- skills/ben-writing-style-2/SKILL.md: redlining section added.
+
+### Notes
+- Whole-paragraph strike-and-retype for small edits is now an explicit failure mode
+  across all consuming skills. Whole-paragraph marks remain correct only for
+  genuinely new or removed paragraphs.
+- Complements the 1.2.1 firm rule (no cover note in the contract file); explanation
+  memos remain separate files.
+
 ## [1.2.1] - 2026-09-22
 
 ### Changed
