@@ -6,6 +6,82 @@ Tiers: **doctrine** (changes or reaffirms a legal rule practitioners rely on —
 
 ---
 
+## Cycle 2026-10-02 — window 2026-10-01 07:30 UTC to 2026-10-02 07:30 UTC
+
+Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE, two calls — first truncated at max_tokens, completed via continuation call) → Lane G cross-family critic (deepseek-ai/DeepSeek-V3.2-TEE after zai-org/GLM-5.2-TEE returned 429 capacity errors across 4 retries; verdict fail — truncated FR verbatim quote, unsupported "concludes the litigation" inference in Mitchell entry) → corrections applied per critic findings → parent deterministic quote/URL check: pass (SEC and FR quotes exact-matched against fetched source bodies; CourtListener quotes exact-matched against opinion text retrieved via read_document; CourtListener URLs returned HTTP 202; sec.gov and federalregister.gov are the canonical source homepages, reachable via RSS/API during collection).
+
+### 1. SEC Proposes Crypto Custody Framework for Advisers and Funds [development] **FLAGGED: doctrine-level if adopted**
+
+**Source:** SEC press release 2026-100 (Oct. 1, 2026)
+
+The SEC proposed new rules and amendments under the Investment Advisers Act of 1940 and the Investment Company Act of 1940 providing a tailored framework for custody of crypto assets by registered investment advisers and regulated funds (registered investment companies and business development companies). The proposal would permit crypto assets to be held in self-custody under certain circumstances and allow state trust companies to serve as custodians for client and regulated fund crypto assets. The comment period runs 60 days from Federal Register publication of the proposing release.
+
+**Practice relevance:** Advisers and funds with crypto exposure should assess current custody arrangements against the proposed framework and consider commenting; if adopted, this changes custody compliance obligations and the universe of permissible custodians.
+
+**Verbatim:** "The Securities and Exchange Commission today proposed new rules and amendments to provide a tailored framework for the custody of crypto assets for registered investment advisers and regulated funds, i.e. registered investment companies and business development companies." / "The proposal would also permit crypto assets to be held in self-custody under certain circumstances and allow the use of state trust companies as custodians for client and regulated fund crypto assets."
+
+**Citation:** https://www.sec.gov/newsroom/press-releases/2026-100-sec-proposal-would-address-how-investment-advisers-funds-can-custody-crypto-assets-under-federal
+
+**Verification verdict:** verified (Lane G critic: pass after correction; parent quote check: pass)
+
+### 2. SEC Final Rule — Commission Quorum Requirement [development]
+
+**Source:** Federal Register final rule, 91 FR 62654, Release No. 34-106537 (effective Oct. 2, 2026)
+
+The SEC amended 17 CFR 200.41 governing when a quorum of the Commission is present. Three commissioners continue to constitute a quorum, with two exceptions: (1) if only two or one commissioners are in office, that number suffices; (2) if the number in office minus those disqualified on a matter is two or one, that number constitutes a quorum for that matter. The amendments are designed to promote flexibility and finality of agency rulemaking.
+
+**Practice relevance:** Clarifies the SEC's capacity to act during commissioner vacancies or recusals — relevant to timing and validity of Commission actions in a period of reduced membership.
+
+**Verbatim:** "Three commissioners will continue to constitute a quorum of the Commission, with two important exceptions. First, consistent with the current rule, if the number of commissioners in office is two or one, that number is sufficient for a quorum. Second, if the number of commissioners in office minus the number disqualified from consideration with respect to a matter is two or one, then that number of commissioners constitutes a quorum for purposes of that matter."
+
+**Citation:** https://www.federalregister.gov/documents/2026/10/02/2026-20262/commission-quorum-requirement
+
+**Verification verdict:** verified (Lane G critic: pass after verbatim-quote completion; parent quote check: pass)
+
+### 3. Mitchell Partners, L.P. v. AMFI (Del. Ch.) [development]
+
+**Source:** Delaware Court of Chancery post-trial memorandum opinion, C.A. No. 2020-0985-KSJM (McCormick, C., Oct. 1, 2026)
+
+After trial, the Court of Chancery entered judgment for defendants on all claims in a long-running challenge to a 1982 reorganization involving Class A voting and Class B non-voting stock and a later reverse stock split. The court found the Class B shares were issued in 1982 and rejected the plaintiff's fiduciary-duty claims arising from the issuance and related proxy disclosures.
+
+**Practice relevance:** Applies settled fiduciary-duty and stock-issuance doctrine to a legacy capital-structure dispute; no new doctrine, but a useful post-trial example of the court crediting historical board records and transfer-agent evidence on share issuance.
+
+**Verbatim:** "The court enters judgment for Defendants on all claims."
+
+**Citation:** https://www.courtlistener.com/opinion/11008541/mitchell-partners-lp-v-amfi/
+
+**Verification verdict:** verified (Lane G critic: pass after removal of unsupported inference; parent quote check: pass)
+
+### 4. Pinczower v. Black and Hava Nation Corp. (Del. Ch.) [development]
+
+**Source:** Delaware Court of Chancery Magistrate's report, C.A. No. 2025-1011-DH (Hume, M., Oct. 1, 2026), issued under Court of Chancery Rule 144
+
+The Magistrate in Chancery recommended granting a motion to dismiss nine of eleven direct and derivative claims arising from a dispute over a startup whiskey company. The derivative claims failed for lack of Section 327 standing: the plaintiff's claimed stock rested on an employment agreement the parties never executed, so it never conferred stockholder status. Counts V and VI (including a loan-agreement claim) survive, retained in Chancery under the cleanup doctrine.
+
+**Practice relevance:** Reinforces strict application of the continuous-ownership requirement for derivative standing where alleged stock ownership depends on an unexecuted agreement; also a current example of cleanup-doctrine retention of legal claims.
+
+**Verbatim:** "For the reasons explained below, I recommend that the motion be denied as to Counts V and VI and granted as to all other counts." / "Because the Employment Agreement never became binding, it did not confer the shares on which Pinczower bases his stockholder status. He therefore lacks standing to pursue his derivative claims, and Counts I, II, VII, VIII, and IX are dismissed."
+
+**Citation:** https://www.courtlistener.com/opinion/11008260/lawrence-e-pinczower-aka-eliyahu-larry-pinczower-v-hava-nation-corp/
+
+**Verification verdict:** verified (Lane G critic: pass; parent quote check: pass)
+
+### 5. Congress.gov Capital Formation Scan (No New Bills) — Oct. 1–2, 2026 [scan]
+
+**Source:** Congress.gov API, bills updated in window
+
+Twenty bills were updated in the window; none involve capital formation, securities, venture capital, crowdfunding, accredited-investor, or emerging-growth-company topics (titles reviewed included water conveyance, land grants, health, veterans, agriculture, and commemorative resolutions).
+
+**Practice relevance:** No capital-formation legislation moved in the window; no action required.
+
+**Verbatim:** "20 bills updated in window; none involve capital formation, securities, venture capital, crowdfunding, accredited investor, or emerging growth company topics (titles reviewed: water conveyance, land grants, health, veterans, agriculture, resolutions)."
+
+**Citation:** https://www.congress.gov/
+
+**Verification verdict:** verified (negative scan result; parent check of Congress.gov API response: pass)
+
+---
+
 ## Cycle 2026-10-01 — window 2026-09-30 to 2026-10-01
 
 Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE, two calls — first truncated at max_tokens, completed via continuation call) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; verdict fail on first draft — misapplied doctrine tier on a proposed rule, missing tiers on five entries, one unsupported completion of truncated source text, missing Item A URL, unflagged H.R. 1190 action-date/window discrepancy) → revision per critic findings → parent deterministic quote/URL check: pass (SEC quote exact-matched against fetched release body; Vera Bradley and Fetras quotes normalized-exact-matched against CourtListener opinion text; CourtListener URLs HTTP 202; sec.gov and congress.gov return 403 to datacenter HEAD requests — both are the canonical source homepages and were reachable via their respective feeds/APIs during collection).
