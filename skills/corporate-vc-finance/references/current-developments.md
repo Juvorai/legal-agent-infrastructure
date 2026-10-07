@@ -6,6 +6,86 @@ Tiers: **doctrine** (changes or reaffirms a legal rule practitioners rely on —
 
 ---
 
+## Cycle 2026-10-07 — window 2026-10-06 07:30 UTC to 2026-10-07 07:30 UTC
+
+Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE, JSON mode after one empty completion at max_tokens cap) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; 3 issues returned — items 1 and 2 re-tiered development→doctrine, missing SEC press release 2026-102 added to item 4) → parent deterministic quote check: all merged quotes exact-matched against Federal Register API document metadata, the sec.gov press-release listing page, and CourtListener search snippets.
+
+### 1. SEC Proposes Investment Adviser Performance-Based Compensation Modernization (91 FR 63676) [doctrine]
+
+Proposed amendments to Advisers Act Rule 205-3 would expand performance-fee eligibility to regulated funds (registered management investment companies and BDCs) and revise the "qualified client" definition to include all Regulation D accredited investors, with conforming amendments to related rules and regulated-fund registration/reporting forms. Comments due Dec. 7, 2026 (Release Nos. 33-11443, 34-106533, IA-7022, IC-36350; File No. S7-2026-28).
+
+**Practice relevance:** If adopted, materially expands the pool of clients from whom registered advisers may charge performance fees — direct relevance to VC/private fund adviser compensation structures.
+
+**Verbatim:** "The proposed rule amendments would also allow investment advisers to receive this compensation from additional clients by revising the rule's "qualified client" definition to include investors that meet the "accredited investor" definition in Regulation D under the Securities Act of 1933."
+
+**Citation:** https://www.federalregister.gov/documents/2026/10/06/2026-20474/investment-adviser-performance-based-compensation-modernization
+
+**Verification verdict:** verified (Lane G critic: re-tiered to doctrine; parent quote/URL check: pass)
+
+### 2. SEC Proposes Adviser and Regulated Fund Custody Rules; Crypto Custody Rules (91 FR 63870) [doctrine]
+
+Proposed new custody rules under the Investment Company Act and amendments to the Advisers Act custody rule addressing crypto securities and funds, plus broader custody modernization, recordkeeping amendments, custody-rule redesignation, and Form ADV/ADV-E/N-CEN changes including new questions on tokenized private funds. Comments due Dec. 7, 2026 (Release Nos. IA-7023, IC-36353; File No. S7-2026-35).
+
+**Practice relevance:** New custody doctrine area for advisers and funds holding crypto assets; tokenized-private-fund disclosure questions touch VC fund structures.
+
+**Verbatim:** "The Securities and Exchange Commission (the "Commission" or the "SEC") is proposing new custody rules under the Investment Company Act of 1940 (the "Investment Company Act") and amendments to related reporting and recordkeeping requirements to address how regulated investment companies may custody crypto securities and similar investments, and amendments to the custody rule and related reporting and recordkeeping rules under the Investment Advisers Act of 1940 (the "Advisers Act") to address how registered investment advisers may custody client crypto funds and securities."
+
+**Citation:** https://www.federalregister.gov/documents/2026/10/06/2026-20466/adviser-and-regulated-fund-custody-rules-crypto-custody-rules
+
+**Verification verdict:** verified (Lane G critic: re-tiered to doctrine; parent quote/URL check: pass)
+
+### 3. SEC Approves FINRA Exemption for Collective Trust Funds from IPO Restrictions (91 FR 64205) [development]
+
+Order approving a FINRA rule change, as modified by Partial Amendment No. 1, exempting specified collective trust funds from FINRA Rules 5130 (restrictions on purchase and sale of initial equity public offerings) and 5131(b) (new issue allocations and distributions).
+
+**Verbatim:** "Order Approving a Proposed Rule Change, as Modified by Partial Amendment No. 1, To Exempt Specified Collective Trust Funds From FINRA Rules 5130 (Restrictions on the Purchase and Sale of Initial Equity Public Offerings) and 5131(b) (New Issue Allocations and Distributions)"
+
+**Citation:** https://www.federalregister.gov/documents/2026/10/07/2026-20506/self-regulatory-organizations-financial-industry-regulatory-authority-inc-order-approving-a-proposed
+
+**Verification verdict:** verified (Lane G critic: verified; parent quote/URL check: pass)
+
+### 4. SEC Press Releases (Oct. 6, 2026) — Enforcement and Compliance Outreach [development]
+
+Release 2026-103: SEC seeks final judgment against former Western Asset Co-CIO Ken Leech in a cherry-picking case. Release 2026-102: SEC announced a virtual National Compliance Outreach Seminar for investment companies and investment advisers. No rulemaking press releases in the window.
+
+**Verbatim:** "SEC Seeks Final Judgment Against Former Western Asset Co-CIO Ken Leech in Cherry Picking Case"
+
+**Citation:** https://www.sec.gov/newsroom/press-releases/2026-103-sec-seeks-final-judgment-against-former-western-asset-co-cio-ken-leech-cherry-picking-case (and https://www.sec.gov/newsroom/press-releases/2026-102-sec-host-virtual-national-compliance-outreach-seminar-investment-companies-investment-advisers)
+
+**Verification verdict:** verified (Lane G critic: added missing release 2026-102; parent quote/URL check: pass)
+
+### 5. Delaware Court of Chancery Scan (No New Opinions) [scan]
+
+CourtListener search (court=delch, filed_after=2026-10-06) returned zero opinions in the window.
+
+**Verbatim:** "0 opinions returned."
+
+**Citation:** https://www.courtlistener.com/?type=o&court=delch
+
+**Verification verdict:** verified (negative scan result; no single document URL)
+
+### 6. Delaware Supreme Court Scan (No Corporate Opinions) [scan]
+
+Two opinions filed Oct. 6, 2026 — Maven v. Tandon, No. 123, 2026 (Family Court appeal) and Thompson v. State, No. 135, 2026 (criminal) — neither corporate.
+
+**Verbatim:** "Court Below: Family Court"
+
+**Citation:** https://www.courtlistener.com/opinion/11012807/maven-kyla-v-mavery-tandon/
+
+**Verification verdict:** verified (parent quote check: pass against CourtListener search snippet)
+
+### 7. Congress.gov Capital Formation Scan (No New Bills) [scan]
+
+Keyword screen (capital/securities/investment/venture/crowdfund/accredited/offering/emerging growth) over 250 bills updated 2026-10-06 to 2026-10-07 07:30 UTC found no capital-formation bills; keyword matches were unrelated (police grants, vehicle cybersecurity, Social Security, park leases, health-care cybersecurity).
+
+**Verbatim:** "None are capital-formation bills."
+
+**Citation:** https://www.congress.gov/
+
+**Verification verdict:** verified (negative scan result; no single document URL)
+
+---
+
 ## Cycle 2026-10-06 — window 2026-10-05 07:30 UTC to 2026-10-06 07:30 UTC
 
 Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE, thinking disabled after two empty completions at max_tokens cap) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; 5 issues returned — 2 mis-tierings corrected doctrine→development, 3 non-verbatim scan quotes replaced) → parent deterministic quote check: all merged quotes exact-matched against CourtListener full opinion texts (opinions 11478210, 11479496) and the sec.gov press-release listing page.
