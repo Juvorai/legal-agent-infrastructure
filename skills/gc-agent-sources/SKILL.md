@@ -41,6 +41,25 @@ Connect only what that company's work requires, and only that company's accounts
 
 Gmail or Outlook connectors may still be connected only when the GC must read or search the company's own mailbox history. They are never used to send agent mail.
 
+### Missive shared inbox (per GC agent, its own mailbox only)
+
+Each GC agent connects the Missive MCP connector (server ID `vvunpexnilctkdwmty4uyq`, Missive's hosted server at https://mcp.missiveapp.com) for reading and drafting in its own company's mailbox. The OAuth user can see multiple companies' mailboxes, so isolation is enforced two ways: a hard AGENT.md rule that every Missive call must pass the agent's own mailbox_id, and platform-level MCP rules that block any Missive call scoped to another mailbox.
+
+Mailbox assignments (inbox mailbox for watching new mail; archive mailbox for full-history search):
+
+| Company | Email account | Inbox mailbox_id | Archive mailbox_id | GC agent |
+|---|---|---|---|---|
+| Chutes | ben@chutes.ai | inbox-4c5eb0e6-7e50-4546-9fb9-f1c39ed6ede6 | archive-29dc32af-f288-4bb7-9fe3-a41bfa806443 | Chutes_GC_Agent |
+| Molecule | benjamin@molecule.to | inbox-056c4ae0-5961-4dc3-889c-2c7af3fe5928 | archive-8700197b-507b-4afe-b744-1e2ffe610215 | Molecule_GC_Agent |
+
+Per-agent setup (performed on each GC agent, not from the CTO agent):
+
+1. Connect the Missive connector to the GC agent and complete OAuth as the shared user.
+2. Add to the GC agent's AGENT.md: "Missive access is restricted to mailbox IDs <inbox-id> and <archive-id> (your company's mailbox). Every search_conversations, get_conversations, compose_draft, and change_labels call MUST pass one of these mailbox IDs. Never query another mailbox. Create drafts only; never call deliver_draft without explicit user approval."
+3. Create MCP rules on the GC agent blocking any Missive tool call whose mailbox_id is not one of the agent's two IDs, and blocking deliver_draft pending a human-in-the-loop decision.
+
+Known limitation: get_conversation_entries and deliver_draft take conversation IDs, not mailbox IDs, so the mailbox rules cannot scope them directly; they are covered by the deliver_draft block and by validating conversation ownership before fetching entries. If a mailbox later holds genuinely privileged traffic, revisit dedicated per-company Missive users for server-side isolation.
+
 A GC agent's client connectors are configured per company at setup. No GC agent ever connects to another company's accounts, and no connector is shared between GC agents.
 
 ## Prohibited Connections (every GC agent)
