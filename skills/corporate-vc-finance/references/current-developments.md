@@ -6,6 +6,41 @@ Tiers: **doctrine** (changes or reaffirms a legal rule practitioners rely on —
 
 ---
 
+## Cycle 2026-10-09 — window 2026-10-08 07:30 UTC to 2026-10-09 07:30 UTC
+
+Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; initial verdict fail — summary completeness and scan-label citation issues corrected) → parent deterministic checks: both Delaware quotes exact-matched (whitespace-normalized) against CourtListener opinion text; all citation URLs live (200/202); FR feed count (29) and SEC RSS latest pubDate (2026-10-06, pre-window) confirmed.
+
+### 1. Ryan Lane v. ATG Capital Opportunities Fund LP, No. 417, 2026 (Del. Oct. 8, 2026) [doctrine]
+
+En banc order affirming the Court of Chancery: (i) interpretation of "participant" under Instruction 3(a)(v) to Item 4 of Schedule 14A as incorporated into Empery Digital, Inc.'s bylaws; (ii) no abuse of discretion in holding appellants waived legal theories raised late in expedited proceedings — including that Rule 14a-9 required disclosure of ATG's Bitcoin hedge. Relevant to proxy-contest bylaw drafting and Schedule 14A participant-disclosure practice.
+
+**Verbatim:** "we affirm the Court of Chancery’s interpretation of the meaning of “participant” under Instruction 3(a)(v) to Item 4 of Schedule 14A, as incorporated into Empery Digital, Inc.’s bylaws. We further hold that, on the record presented, the Court of Chancery did not abuse its discretion in concluding that Appellants waived legal theories not advanced until late in the expedited proceedings—specifically, that ATG was required to disclose an “agreement, arrangement or understanding” with Brown irrespective of Brown’s status as a “participant,” and that Rule 14a-9 required disclosure of ATG’s Bitcoin hedge."
+
+**Citation:** https://www.courtlistener.com/opinion/11018166/ryan-lane-v-atg-capital-opportunities-fund-lp/
+
+**Verification verdict:** verified (Lane G critic: fail → corrections applied; parent quote check: pass; URL live)
+
+### 2. Conroe WM LLC v. HREF Senior Worthington LLC, No. 89, 2026 (Del. Oct. 8, 2026) [development]
+
+Order affirming the Court of Chancery's judgment on the basis of its January 12, 2026 Memorandum Opinion (C.A. No. 2024-1148). Summary affirmance; no new rule.
+
+**Verbatim:** "we find it evident that the judgment below should be affirmed on the basis of and for the reasons stated in the Court of Chancery’s Memorandum Opinion dated January 12, 2026."
+
+**Citation:** https://www.courtlistener.com/opinion/11018167/conroe-wm-llc-v-href-senior-worthington-llc/
+
+**Verification verdict:** verified (parent quote check: pass; URL live)
+
+### 3. Negative Scan — SEC Press, Federal Register, Chancery, Congress.gov [scan]
+
+- **SEC press releases:** no items published in the window; latest RSS item pubDate "Tue, 06 Oct 2026 16:30:24 -0400" (pre-window). https://www.sec.gov/news/pressreleases.rss
+- **Federal Register (SEC agency feed, 2026-10-08/09):** 29 documents, all Notices — routine SRO fee/clearly-erroneous filings, OMB information-collection extensions, one Investment Company Act exemptive-application notice (DPP Investors 2025 LP and DLA Piper LLP (US), 91 FR 64713, https://www.federalregister.gov/documents/2026/10/09/2026-20772/dpp-investors-2025-lp-and-dla-piper-llp-us) and one clearing-agency application amendment (Cboe Clear, 91 FR 64709). No proposed or final rules of general corporate/VC applicability.
+- **Court of Chancery (delch):** 0 opinions filed in window (CourtListener search count: 0).
+- **Congress.gov:** 177 bills updated in window; keyword screen (capital/securities/investment/venture/crowdfund/accredited/offering/emerging growth/private fund/small business) produced 6 title hits; on inspection none had a capital-formation action inside the window (HR 1190 latest action 2026-09-29; HR 10622 and S 5642 referred pre-window). https://www.congress.gov/
+
+**Verification verdict:** verified (Lane G critic: pass after correction; parent checks: FR count and SEC pubDate confirmed against API responses)
+
+---
+
 ## Cycle 2026-10-08 — window 2026-10-07 07:30 UTC to 2026-10-08 07:30 UTC
 
 Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; verdict: pass) → parent deterministic checks: all five FR citations/titles exact-matched against Federal Register API metadata; SEC RSS pubDates confirmed; CourtListener counts confirmed.
