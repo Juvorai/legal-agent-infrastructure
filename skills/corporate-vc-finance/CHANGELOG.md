@@ -2,6 +2,10 @@
 
 Rollback index. Every merge into references/ writes a line here.
 
+## 2026-10-09 — Daily monitoring cycle (window 2026-10-08 07:30Z → 2026-10-09 07:30Z)
+
+- 3 entries merged into references/current-developments.md: Ryan Lane v. ATG Capital Opportunities Fund LP (Del. Oct. 8, 2026, en banc order — Schedule 14A "participant" bylaw interpretation, waiver, Rule 14a-9 Bitcoin-hedge disclosure; flagged doctrine), Conroe WM LLC v. HREF Senior Worthington LLC (Del. Oct. 8, 2026, summary affirmance; development), negative scan across SEC press / Federal Register SEC feed (29 routine notices) / delch (0 opinions) / Congress.gov (177 updated bills, no capital-formation action). Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE) → Lane G critic (zai-org/GLM-5.2-TEE; fail → corrections applied) → parent deterministic quote/URL checks pass. No source changes.
+
 ## 2026-10-08 — Daily monitoring cycle (window 2026-10-07 07:30Z → 2026-10-08 07:30Z)
 
 - 1 scan-tier entry merged into references/current-developments.md: negative result across all four approved sources — SEC press RSS (latest 2026-10-06, pre-window), Federal Register SEC feed (5 docs, all routine SRO/exemptive; 91 FR 64205 already merged 2026-10-07), CourtListener delch (0 opinions) / del (3 opinions 2026-10-06, criminal/family, outside window), Congress.gov (100 updated bills, no capital-formation). Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE) → Lane G critic (zai-org/GLM-5.2-TEE; verdict pass) → parent deterministic checks pass. No doctrine-level items; no source changes.
