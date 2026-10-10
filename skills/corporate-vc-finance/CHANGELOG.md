@@ -2,6 +2,10 @@
 
 Rollback index. Every merge into references/ writes a line here.
 
+## 2026-10-10 — Daily monitoring cycle (window 2026-10-09 07:30Z → 2026-10-10 07:30Z)
+
+- 6 entries merged into references/current-developments.md: SEC Rule 17a-7 cross-trading proposal (Press Release 2026-104, development — proposal only, not doctrine-flagged), DPP Investors 2025 LP / DLA Piper LLP (US) employees'-securities-company exemptive application notice (91 FR 64713, development), Federal Register SEC feed scan (29 notices, routine), Delaware Chancery scan (0 opinions), Delaware Supreme scan (4 results; 2 criminal out-of-scope, 2 corporate already merged 2026-10-09), Congress.gov scan (148 bills updated, no capital-formation action). Verification: Lane C draft Qwen/Qwen3.8-27B-TEE (Qwen/Qwen3.5-397B-A17B-TEE returned empty content after hidden-reasoning budget exhaustion; retry timed out) → Lane G critic zai-org/GLM-5.2-TEE (fail on entries 4–5 fabricated scan quotes; corrected to tool-result descriptions per checklist rule 4) → parent deterministic checks: 2/2 substantive quotes exact-matched against primary text; SEC/FR URLs live (200). No doctrine-level items flagged. No source changes.
+
 ## 2026-10-09 — Daily monitoring cycle (window 2026-10-08 07:30Z → 2026-10-09 07:30Z)
 
 - 3 entries merged into references/current-developments.md: Ryan Lane v. ATG Capital Opportunities Fund LP (Del. Oct. 8, 2026, en banc order — Schedule 14A "participant" bylaw interpretation, waiver, Rule 14a-9 Bitcoin-hedge disclosure; flagged doctrine), Conroe WM LLC v. HREF Senior Worthington LLC (Del. Oct. 8, 2026, summary affirmance; development), negative scan across SEC press / Federal Register SEC feed (29 routine notices) / delch (0 opinions) / Congress.gov (177 updated bills, no capital-formation action). Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE) → Lane G critic (zai-org/GLM-5.2-TEE; fail → corrections applied) → parent deterministic quote/URL checks pass. No source changes.
