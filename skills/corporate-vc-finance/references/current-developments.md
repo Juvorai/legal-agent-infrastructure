@@ -6,6 +6,60 @@ Tiers: **doctrine** (changes or reaffirms a legal rule practitioners rely on —
 
 ---
 
+## Cycle 2026-10-10 — window 2026-10-09 07:30 UTC to 2026-10-10 07:30 UTC
+
+Verification: Lane C draft (Qwen/Qwen3.8-27B-TEE fallback; Qwen/Qwen3.5-397B-A17B-TEE returned empty content after hidden-reasoning budget exhaustion, retry timed out) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; verdict fail on entries 4–5 — fabricated scan-label quotes corrected, completeness details added to entries 1–2) → parent deterministic checks: both substantive quotes exact-matched (whitespace-normalized) against primary text (SEC 2026-104 page; FR 2026-20772 full text); SEC and FR citation URLs live (200); CourtListener and Congress.gov counts confirmed from tool results (delch 0; del 4 with 2 criminal out-of-scope and 2 already merged; 148 bills updated, 1 keyword match out of scope).
+
+### 1. SEC Proposes Expanding Securities Eligible for Cross Trading by Registered Funds, SEC Press Release 2026-104 (Oct. 9, 2026) [development]
+
+The SEC proposed amendments to Rule 17a-7 under the Investment Company Act of 1940 (the cross-trading rule) that would restore the ability to cross trade most fixed-income securities — effectively restricted since the 2020 fund-valuation rule — and modernize pricing and oversight conditions, subject to enhanced investor-protection measures and new aggregated reporting of cross-trading activity. The comment period will remain open for 60 days after Federal Register publication. Relevant to registered-fund trading practice; a proposal only, not an adopted rule.
+
+**Verbatim:** "The proposed amendments would restore the ability to cross trade most fixed-income securities and modernize the rule’s conditions, including those related to pricing and oversight of cross trades."
+
+**Source:** https://www.sec.gov/newsroom/press-releases/2026-104-sec-proposes-expanding-securities-eligible-cross-trading-registered-funds
+
+### 2. DPP Investors 2025 LP and DLA Piper LLP (US), 91 FR 64713 (Oct. 9, 2026) [development]
+
+Notice of application (Investment Company Act Release No. 36356; File No. 813-00421) for an exemptive order under sections 6(b) and 6(e) of the Investment Company Act for "employees' securities companies" within the meaning of section 2(a)(13) formed for the benefit of eligible DLA Piper LLP (US) employees — the standard vehicle for law-firm employee co-investment funds. Application filed February 28, 2025, amended February 26, 2026 and September 30, 2026; hearing requests due 5:30 p.m. Eastern, November 2, 2026. Routine exemptive-application notice of interest to firm co-investment structuring.
+
+**Verbatim:** "Applicants request an order to exempt certain limited liability companies, partnerships, trusts, corporations or other entities (``Investment Funds'') formed for the benefit of eligible employees of DLA Piper LLP (US) and its affiliates from certain provisions of the Act."
+
+**Source:** https://www.federalregister.gov/documents/2026/10/09/2026-20772/dpp-investors-2025-lp-and-dla-piper-llp-us
+
+### 3. Federal Register SEC feed (publication dates Oct. 8–9, 2026) [scan]
+
+29 SEC-agency documents published in the window, all Notices: 27 routine SRO proposed-rule-change filings (immediately effective fee/rule changes) and agency information-collection OMB extensions, plus the DPP Investors notice covered above. No proposed or final rules of substance beyond items separately entered.
+
+**Verbatim:** tool result — FR API `count: 29`, all `type: "Notice"` (no quotable document text for an aggregate scan; citation weakness noted per checklist rule 4).
+
+**Source:** https://www.federalregister.gov/api/v1/documents.json?conditions[agencies][]=securities-and-exchange-commission
+
+### 4. Delaware Court of Chancery (delch), filed Oct. 9–10, 2026 [scan]
+
+Zero opinions filed in the window.
+
+**Verbatim:** tool result — CourtListener search (type=o, court=delch, filed_after=2026-10-08, filed_before=2026-10-10) returned `count: 0` (aggregate scan; no document text to quote).
+
+**Source:** https://www.courtlistener.com/?type=o&court=delch&filed_after=2026-10-09&filed_before=2026-10-10
+
+### 5. Delaware Supreme Court (del), filed Oct. 9–10, 2026 [scan]
+
+Four results in window: two criminal appeals (Thompkins v. State, No. 423, 2025; Cannon v. State) out of scope, and two corporate cases filed Oct. 8 (Ryan Lane v. ATG Capital Opportunities Fund LP, No. 417, 2026; Conroe WM LLC v. HREF Senior Worthington LLC, No. 89, 2026) already merged in the 2026-10-09 cycle. No new in-scope corporate decisions.
+
+**Verbatim:** tool result — CourtListener search (type=o, court=del) returned `count: 4` with case names as listed (aggregate scan; no document text to quote).
+
+**Source:** https://www.courtlistener.com/?type=o&court=del&filed_after=2026-10-09&filed_before=2026-10-10
+
+### 6. Congress.gov capital-formation screen, bills updated Oct. 9 07:30Z – Oct. 10 07:30Z [scan]
+
+148 bills updated in the window. Keyword screen (capital, securities, investment, venture, crowdfund, accredited, offering, emerging growth) matched one bill, H.R. 10729, "Long-Term Rural Health Investment Act of 2026" (referred to House Energy and Commerce) — healthcare, not capital formation. No capital-formation legislative action in the window.
+
+**Verbatim:** tool result — Congress.gov API `pagination.count: 148`; single keyword match titled "Long-Term Rural Health Investment Act of 2026" (aggregate scan; no document text to quote).
+
+**Source:** https://www.congress.gov/
+
+---
+
 ## Cycle 2026-10-09 — window 2026-10-08 07:30 UTC to 2026-10-09 07:30 UTC
 
 Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; initial verdict fail — summary completeness and scan-label citation issues corrected) → parent deterministic checks: both Delaware quotes exact-matched (whitespace-normalized) against CourtListener opinion text; all citation URLs live (200/202); FR feed count (29) and SEC RSS latest pubDate (2026-10-06, pre-window) confirmed.
