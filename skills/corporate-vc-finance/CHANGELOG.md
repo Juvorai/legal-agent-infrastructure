@@ -114,3 +114,9 @@ Rollback index. Every merge into references/ writes a line here.
 - Doctrine-level items flagged to user: Proxy Solicitation Modernization FR publication (91 FR 59852). No source changes.
 
 - 2026-10-02: Daily monitoring cycle (window 2026-10-01 07:30Z–2026-10-02 07:30Z). Merged 5 verified entries into references/current-developments.md: SEC crypto custody proposal (2026-100, flagged doctrine-if-adopted), SEC quorum final rule (91 FR 62654), Mitchell Partners v. AMFI (Del. Ch. post-trial), Pinczower v. Hava Nation (Del. Ch. Rule 144 report), Congress.gov capital-formation scan (negative). Lane C draft Qwen3.5-397B → Lane G critic DeepSeek-V3.2 (GLM-5.2 429 fallback) → parent quote checks pass.
+
+## 2026-10-12 — Daily monitoring cycle (window 2026-10-11 07:30Z → 2026-10-12 07:30Z)
+
+- Merged 5 scan-tier entries into references/current-developments.md: SEC press releases (negative), Federal Register SEC feed (20 routine notices, same set as 2026-10-11 cycle), CourtListener delch (count 0), CourtListener del (count 0), Congress.gov capital-formation screen (0 bills updated, 0 keyword matches). No new verified developments.
+- Verification chain: Lane C draft (google/gemma-4-31B-turbo-TEE fallback; Qwen3.5-397B-A17B-TEE and Qwen3.8-27B-TEE returned empty content) → Lane G critic (zai-org/GLM-5.2-TEE; verdict fail on first draft — court mislabel, generic citation labels, imprecise window) → parent revision applying all corrections → parent deterministic checks: pass (10/10).
+- No doctrine-level items. No source changes.
