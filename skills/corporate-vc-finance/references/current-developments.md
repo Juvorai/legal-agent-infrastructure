@@ -6,6 +6,59 @@ Tiers: **doctrine** (changes or reaffirms a legal rule practitioners rely on —
 
 ---
 
+## Cycle 2026-10-14 — window 2026-10-13 07:30 UTC to 2026-10-14 07:30 UTC
+
+Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE; first call exhausted hidden-reasoning budget — retried with 12k max_tokens, succeeded) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; verdict fail — one wrong URL, one tier downgrade, missing statutory detail and two § 220 sub-holdings) → parent revision applying all corrections → parent deterministic checks: pass (all quotes confirmed verbatim in primary-source text; all URLs from tool results).
+
+### 1. SEC press releases — scan (negative)
+
+**Finding:** No SEC press releases dated 2026-10-13 or 2026-10-14. The most recent item in the feed remains "SEC Proposes Expanding Securities Eligible for Cross Trading by Registered Funds" (pubDate Fri, 09 Oct 2026 10:59:00 -0400), already merged in the 2026-10-10 cycle.
+
+**Citation:** https://www.sec.gov/news/pressreleases.rss
+
+**Verification verdict:** verified (negative scan; feed inspected directly)
+
+### 2. Federal Register (SEC agency feed) — scan (routine)
+
+**Finding:** 25 documents published 2026-10-13/14. 23 are routine SRO notices of filing/immediate effectiveness or designations of longer review periods (Cboe BZX/BYX/EDGX/EDGA/Exchange, Nasdaq, Nasdaq PHLX, Nasdaq Texas, MEMX, Texas Stock Exchange, CME Securities Clearing). Two non-SRO routine items: a Joint Industry Plan 29th Amendment to the NMS extraordinary-market-volatility plan (temporary order ≤120 days, revising consolidated-price calculation timing for overnight trading; 91 FR 65016) and a Form N-54C extension notice. The one substantive item is covered separately below.
+
+**Citation:** https://www.federalregister.gov/documents/2026/10/13/2026-20799/joint-industry-plan-notice-of-filing-and-order-of-summary-effectiveness-on-a-temporary-basis-not-to (NMS plan amendment); feed: https://www.federalregister.gov/api/v1/documents.json?conditions[agencies][]=securities-and-exchange-commission
+
+**Verification verdict:** verified (Lane G critic: correction applied — NMS amendment and Form N-54C notice added; parent check: pass)
+
+### 3. Federal Register — RTW Biotech Growth Fund exemptive application — development
+
+**Finding:** Notice of an application by RTW Biotech Growth Fund and RTW Investments, LP (Investment Company Act Release No. 36357; File No. 812-16081; filed August 28, 2026) seeking "an exemption from sections 18(a)(2), 18(c) and 18(i) of the Act, under sections 6(c) and 23(c) of the Act for an exemption from rule 23c-3 under the Act, and for an order pursuant to section 17(d) of the Act and rule 17d-1 under the Act." Per the summary: "Applicants request an order to permit certain registered closed-end investment companies to issue multiple classes of shares, to impose early withdrawal charges, and to impose asset-based distribution and/or service fees." Hearing requests due November 2, 2026. Another data point in the ongoing interval-fund/closed-end-fund retailization exemptive wave.
+
+**Citation:** https://www.federalregister.gov/documents/2026/10/14/2026-20936/rtw-biotech-growth-fund-and-rtw-investments-lp (91 FR 65275)
+
+**Verification verdict:** verified (Lane G critic: statutory sections, release/file numbers, and deadline added; parent check: pass — quotes verbatim in FR full text)
+
+### 4. Delaware Chancery — Likansis v. Walmart Inc. — development
+
+**Finding:** Magistrate in Chancery Gibbs (final report by stipulation under 10 Del. C. § 350) granted summary judgment to Walmart on a former employee's claim to mandatory advancement under Walmart's bylaws, concluding "Defendants have proved that Plaintiff is not entitled to mandatory" advancement because she was not an officer of Walmart or of a covered "other enterprise" serving at Walmart's request. The report applies the distinction in Cal. Corp. Code § 17704.08 between mandatory indemnification for LLC members/managers (subsection (a)) and permissive indemnification for officers, employees, and agents (subsection (b)) in analyzing the plaintiff's service for Walmart LLC. Fact-specific, but a useful read on officer-status proof and bylaw advancement scope for divisional/subsidiary roles.
+
+**Citation:** https://www.courtlistener.com/opinion/11032112/jenisha-s-likansis-v-walmart-inc/ (C.A. No. 2025-1455-DG, Oct. 13, 2026)
+
+**Verification verdict:** verified (Lane G critic: tier downgraded doctrine → development; statutory analysis added; parent check: pass — quote verbatim in opinion text)
+
+### 5. Delaware Supreme Court — Wong Leung Trust v. Amazon.com, Inc. — doctrine
+
+**Finding:** The Court (Legrow, Griffiths, Zurn, JJ.) affirmed Chancery's November 5, 2025 letter opinion imposing a forum restriction on a DGCL § 220 inspection, holding "the court has broad discretion to evaluate conditions on inspection based on case-specific facts" and rejecting the argument that forum-restriction review is limited to the United Technologies Corp. v. Treppel factors. The Order further holds that inquiring into the stockholder's need to sue outside Delaware "merely asks the stockholder to identify where litigation may be filed, not how the stockholder may use the books and records" (citing Lebanon Cnty. Emps.' Ret. Fund v. AmerisourceBergen Corp.), and that "Court of Chancery Rule 60(b)" and "the ability to seek expedition provide a sufficient safety valve to this forum restriction." Reaffirms and extends Treppel discretion for § 220 forum conditions — relevant to practitioners drafting or litigating inspection conditions.
+
+**Citation:** https://www.courtlistener.com/opinion/11032079/roberta-ann-kw-wong-leung-revocable-trust-ua-dated-03092018-v/ (No. 103, 2026, decided Oct. 13, 2026)
+
+**Verification verdict:** verified (Lane G critic: two omitted footnote-1 holdings added; parent check: pass — all quotes verbatim in order text)
+
+### 6. Congress.gov — scan (negative)
+
+**Finding:** No bills with introducedDate of 2026-10-13 or 2026-10-14 in the Congress.gov bill feed (203 bills listed across the two days reflect prior introduction dates); no capital-formation legislation in the window.
+
+**Citation:** https://api.congress.gov/v3/bill
+
+**Verification verdict:** verified (negative scan; API queried directly)
+
+---
 ## Cycle 2026-10-13 — window 2026-10-12 07:30 UTC to 2026-10-13 07:30 UTC
 
 Verification: Lane C draft (google/gemma-4-31B-turbo-TEE fallback; Qwen/Qwen3.5-397B-A17B-TEE returned empty content — recurring hidden-reasoning budget exhaustion) → Lane G cross-family critic (deepseek-ai/DeepSeek-V3.2-TEE, the lane's optional tool-use critic; zai-org/GLM-5.2-TEE and Qwen/Qwen3.5-397B-A17B-TEE both returned empty content on critic calls; verdict fail on first draft — SEC finding missing feed context, FR breakdown incomplete, two citation corrections) → parent revision applying all corrections → parent deterministic checks: pass (verbatim quote confirmed in opinion text; all URLs from tool results).
