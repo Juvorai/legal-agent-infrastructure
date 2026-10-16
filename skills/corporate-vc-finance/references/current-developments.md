@@ -6,6 +6,117 @@ Tiers: **doctrine** (changes or reaffirms a legal rule practitioners rely on —
 
 ---
 
+## Cycle 2026-10-16 — window 2026-10-15 07:30 UTC to 2026-10-16 07:30 UTC
+
+Verification: Lane C draft (google/gemma-4-31B-turbo-TEE fallback; Qwen/Qwen3.5-397B-A17B-TEE and Qwen/Qwen3.8-27B-TEE returned empty content) → Lane G critic (deepseek-ai/DeepSeek-V3.2-TEE fallback after zai-org/GLM-5.2-TEE returned empty content twice; verdict fail on first draft — one fabricated scan quote, one tier challenge, H.R. 1190 date question) → parent revision applying corrections (scan quote replaced with packet-verbatim text; H.R. 1190 retained with clarified date framing — bill record updated in window, Senate message 2026-10-14) → parent deterministic checks: pass (16/16: 8 verbatim quotes confirmed character-for-character in primary-source text, 8 citation URLs from tool results).
+
+### 1. SEC Press Releases Scan (No New Releases) — 2026-10-15 to 2026-10-16 [scan]
+
+**Source:** SEC
+
+The SEC press release RSS feed contained no releases dated 2026-10-15 or 2026-10-16. The most recent item was the October 14, 2026 announcement of the Small Business Advisory Committee meeting on IPO modernization and Regulation Crowdfunding (outside the window).
+
+**Practice relevance:** No SEC press activity in the window; no action required.
+
+**Verbatim:** "No press releases dated 2026-10-15 or 2026-10-16."
+
+**Citation:** https://www.sec.gov/news/pressreleases.rss
+
+**Verification verdict:** verified (Lane G critic: corrections applied — see cycle header; parent deterministic quote/URL check: pass)
+### 2. Investment Company Cross Trading (Proposed Rule) — 2026-10-15 [development]
+
+**Source:** Federal Register
+
+The SEC published its proposed amendments to the Investment Company Act cross-trading rule (91 FR 65622), expanding the scope of securities eligible for cross trades between registered investment companies and affiliates, modernizing conditions, and adding aggregated reporting of cross trades in Form N-PORT and Form N-MFP. Comments close December 14, 2026. This is the Federal Register publication of SEC press release 2026-104 (Oct. 9, 2026).
+
+**Practice relevance:** Fund complexes and BDCs should assess whether expanded cross-trading eligibility changes affiliate transaction workflows and prepare comments by the December 14 deadline.
+
+**Verbatim:** "The proposed amendments are designed to expand the scope of securities that are eligible for cross trading, modernize the rule's conditions, and enhance investor protection."
+
+**Citation:** https://www.federalregister.gov/documents/2026/10/15/2026-21037/investment-company-cross-trading
+
+**Verification verdict:** verified (Lane G critic: corrections applied — see cycle header; parent deterministic quote/URL check: pass)
+### 3. Stellus Capital Investment Corporation, et al. (Notice) — 2026-10-16 [development]
+
+**Source:** Federal Register
+
+The SEC published notice of an exemptive-relief application by Stellus Capital Investment Corporation and affiliates (BDC co-investment style relief).
+
+**Practice relevance:** Routine exemptive application notice of interest to BDC and private-fund counsel tracking co-investment relief practice.
+
+**Verbatim:** "Stellus Capital Investment Corporation, et al."
+
+**Citation:** https://www.federalregister.gov/documents/2026/10/16/2026-21215/stellus-capital-investment-corporation-et-al
+
+**Verification verdict:** verified (Lane G critic: corrections applied — see cycle header; parent deterministic quote/URL check: pass)
+### 4. Shareholder Representative Services, LLC v. Alexion Pharmaceuticals Inc. (Del. Chancery) — Oct. 15, 2026 [development]
+
+**Source:** Del. Chancery
+
+Vice Chancellor Zurn (sitting by designation) issued a letter opinion in the long-running milestone-payment dispute, addressing adjudication of SRS's remaining commercially-reasonable-efforts claim and ruling that the parties' contract rate applies to postjudgment interest on the damages award as of the date of judgment.
+
+**Practice relevance:** Confirms Delaware's approach to postjudgment interest at the contractual rate in M&A milestone/earnout disputes — relevant to drafting milestone payment and interest provisions.
+
+**Verbatim:** "Delaware law uses the parties’ specified lawful contract rate to set the postjudgment interest rate."
+
+**Citation:** https://www.courtlistener.com/opinion/11035322/shareholder-representative-services-llc-v-alexion-pharmaceuticals-inc/
+
+**Verification verdict:** verified (Lane G critic: corrections applied — see cycle header; parent deterministic quote/URL check: pass)
+### 5. Techno-X USA Inc. v. Spartan Forge LLC (Del. Chancery) — Oct. 15, 2026 [doctrine]
+
+**Source:** Del. Chancery
+
+In a post-trial Memorandum Opinion, Vice Chancellor Will entered judgment for minority investor Techno-X on claims for breach of a term-sheet exclusivity provision and of LLC Agreement Sections 8.2(a)(v) and (xi) (and Section 7.2(c) against the managing member), awarding nominal damages of $1 and declaratory/equitable relief, while declining fee shifting under the American Rule.
+
+**Practice relevance:** Reinforces enforceability of exclusivity and governance protections in minority-investment term sheets and LLC agreements, and restates the high bar for bad-faith fee shifting.
+
+**Verbatim:** "Taking aggressive positions that prove baseless after trial does not, without more, demonstrate bad faith."
+
+**Citation:** https://www.courtlistener.com/opinion/11035057/techno-x-usa-inc-v-spartan-forge-llc/
+
+**Verification verdict:** verified (Lane G critic: corrections applied — see cycle header; parent deterministic quote/URL check: pass)
+### 6. Ana Maria Turner v. Lam Research Corporation (Del. Supreme) — Oct. 15, 2026 [doctrine]
+
+**Source:** Del. Supreme
+
+The Supreme Court affirmed the Court of Chancery's laches dismissal of claims by the estate of a stockholder whose 1988 California-share certificate was never exchanged in Lam Research's 1989 Delaware redomiciliation merger. The claims accrued in 1989 when the company filed a Form X-17F-1A lost-securities report, and prejudice was presumed once the analogous statute of limitations had run.
+
+**Practice relevance:** Clarifies accrual and the presumption of prejudice for laches purposes when legal claims are pursued in equity — significant for stale-claim defense strategy and redomiciliation record-keeping.
+
+**Verbatim:** "For legal claims in equity, if the statute of limitations has run, then untimeliness and prejudice for purposes of laches are presumed."
+
+**Citation:** https://www.courtlistener.com/opinion/11035319/ana-maria-turner-v-lam-research-corporation/
+
+**Verification verdict:** verified (Lane G critic: corrections applied — see cycle header; parent deterministic quote/URL check: pass)
+### 7. In Re Priority Responsible Funding LLC (Del. Supreme) — Oct. 15, 2026 [development]
+
+**Source:** Del. Supreme
+
+The Court en Banc summarily affirmed the Court of Chancery's Post-Trial Memorandum Opinion dated March 10, 2026.
+
+**Practice relevance:** Summary affirmance; the Chancery post-trial opinion remains the operative authority.
+
+**Verbatim:** "we find it evident that the judgment below should be affirmed on the basis of and for the reasons stated in the Court of Chancery’s Post- Trial Memorandum Opinion dated March 10, 2026"
+
+**Citation:** https://www.courtlistener.com/opinion/11035056/in-re-priority-responsible-funding-llc/
+
+**Verification verdict:** verified (Lane G critic: corrections applied — see cycle header; parent deterministic quote/URL check: pass)
+### 8. H.R. 1190 — Expanding Access to Capital for Rural Job Creators Act — Senate passage cleared 2026-10-14 [development]
+
+**Source:** Congress.gov
+
+H.R. 1190 (119th Congress) passed the Senate without amendment by unanimous consent on September 29, 2026; the message on Senate action was sent to the House on October 14, 2026, and the bill record was updated in the window. The bill requires the SEC Office of the Advocate for Small Business Capital Formation to report on issues encountered by rural-area small businesses.
+
+**Practice relevance:** A capital-formation reporting mandate moving toward enactment; monitor for House clearing and signature.
+
+**Verbatim:** "This bill requires the Office of the Advocate for Small Business Capital Formation within the Securities and Exchange Commission to report on issues encountered by rural-area small businesses."
+
+**Citation:** https://www.congress.gov/bill/119th-congress/house-bill/1190
+
+**Verification verdict:** verified (Lane G critic: corrections applied — see cycle header; parent deterministic quote/URL check: pass)
+
+---
+
 ## Cycle 2026-10-14 — window 2026-10-13 07:30 UTC to 2026-10-14 07:30 UTC
 
 Verification: Lane C draft (Qwen/Qwen3.5-397B-A17B-TEE; first call exhausted hidden-reasoning budget — retried with 12k max_tokens, succeeded) → Lane G cross-family critic (zai-org/GLM-5.2-TEE; verdict fail — one wrong URL, one tier downgrade, missing statutory detail and two § 220 sub-holdings) → parent revision applying all corrections → parent deterministic checks: pass (all quotes confirmed verbatim in primary-source text; all URLs from tool results).
